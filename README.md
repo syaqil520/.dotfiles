@@ -1,10 +1,10 @@
-##Contents
+## Contents
 - Neovim config
 - git config
 - tmux config
 - zsh config
 
-##Neovim setup
+## Neovim setup
 
 ### Requirements 
 
