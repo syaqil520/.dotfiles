@@ -33,7 +33,9 @@ return {
             {
                 "<Leader>af",
                 function()
-                    require("telescope.builtin").find_files()
+                    require("telescope.builtin").find_files({
+                        no_ignore = true,
+                    })
                 end,
                 desc = "List [A]ll [F]iles, does not respect .gitignore",
             },
