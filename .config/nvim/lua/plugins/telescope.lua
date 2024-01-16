@@ -17,6 +17,13 @@ return {
                 desc = "[D]ocument [S]ymbol",
             },
             {
+                "gr",
+                function()
+                    require("telescope.builtin").lsp_references()
+                end,
+                desc = "[G]o to [R]eference",
+            },
+            {
                 "<Leader>ws",
                 function()
                     require("telescope.builtin").lsp_workspace_symbols()
