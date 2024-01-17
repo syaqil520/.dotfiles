@@ -53,13 +53,18 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 
-keymap.set("n", "<C-j>", "<C-w>j", opts)
-keymap.set("n", "<C-k>", "<C-w>k", opts)
+-- keymap.set("n", "<C-k>", "<C-w>k", opts)
+-- keymap.set("n", "<C-j>", "<C-w>j", opts)
+-- Resize window
+keymap.set("n", "<C-w><left>", "<C-w><")
+keymap.set("n", "<C-w><right>", "<C-w>>")
+keymap.set("n", "<C-w><up>", "<C-w>+")
+keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Diagnostics
-keymap.set("n", "<C-j>", function()
-    vim.diagnostic.goto_next()
-end, opts)
+-- keymap.set("n", "<C-*>", function()
+--     vim.diagnostic.goto_next()
+-- end, opts)
 
 -- keymap.set("n", "<leader>r", function()
 --   require("qaizaa.utils").replaceHexWithHSL()
