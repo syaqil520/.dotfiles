@@ -15,9 +15,9 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_augroup("RestoreCursorStyle", { clear = true })
+-- Restore cursor on nvim exit
 vim.api.nvim_create_autocmd("VimLeave", {
-    pattern = "*",
-    group = "RestoreCursorStyle",
-    command = 'silent !echo -ne "e[5 q"',
+    callback = function()
+        vim.opt.guicursor = "a:ver25-blinkon50-blinkoff50-blinkwait50"
+    end,
 })
