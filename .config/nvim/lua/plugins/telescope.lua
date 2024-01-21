@@ -16,13 +16,13 @@ return {
                 end,
                 desc = "[D]ocument [S]ymbol",
             },
-            {
-                "gr",
-                function()
-                    require("telescope.builtin").lsp_references()
-                end,
-                desc = "[G]o to [R]eference",
-            },
+            -- {
+            --     "gr",
+            --     function()
+            --         require("telescope.builtin").lsp_references()
+            --     end,
+            --     desc = "[G]o to [R]eference",
+            -- },
             {
                 "<Leader>ws",
                 function()
@@ -30,105 +30,105 @@ return {
                 end,
                 desc = "[W]orkspace [S]ymbol",
             },
-            {
-                "<Leader>?",
-                function()
-                    require("telescope.builtin").oldfiles()
-                end,
-                desc = "[?] Find recently opened files",
-            },
-            {
-                "<Leader>af",
-                function()
-                    require("telescope.builtin").find_files({
-                        no_ignore = true,
-                    })
-                end,
-                desc = "List [A]ll [F]iles, does not respect .gitignore",
-            },
-            {
-                "<Leader>sf",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.find_files({
-                        no_ignore = false,
-                        hidden = true,
-                    })
-                end,
-                desc = "Lists files in your current working directory, respects .gitignore",
-            },
-            {
-                "<Leader>sg",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.live_grep({
-                        additional_args = { "--hidden" },
-                    })
-                end,
-                desc = "Search by Grep for a string in your current working directory and get results live as you type, respects .gitignore",
-            },
-            {
-                "<Leader>sw",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.grep_string()
-                end,
-                desc = "[S]earch current [W]ord",
-            },
-            {
-                "<Leader>ob",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.buffers()
-                end,
-                desc = "Lists [O]pen [B]uffers",
-            },
-            {
-                ";t",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.help_tags()
-                end,
-                desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
-            },
-            {
-                ";;",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.resume()
-                end,
-                desc = "Resume the previous telescope picker",
-            },
-            {
-                ";s",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.treesitter()
-                end,
-                desc = "Lists Function names, variables, from Treesitter",
-            },
-            {
-                "<Leader>of",
-                function()
-                    local telescope = require("telescope")
-
-                    local function telescope_buffer_dir()
-                        return vim.fn.expand("%:p:h")
-                    end
-
-                    telescope.extensions.file_browser.file_browser({
-                        path = "%:p:h",
-                        cwd = telescope_buffer_dir(),
-                        respect_gitignore = false,
-                        hidden = true,
-                        grouped = true,
-                        previewer = false,
-                        initial_mode = "normal",
-                        layout_config = { height = 40 },
-                    })
-                end,
-                desc = "Open File Browser with the path of the current buffer",
-            },
+            -- {
+            --     "<Leader>?",
+            --     function()
+            --         require("telescope.builtin").oldfiles()
+            --     end,
+            --     desc = "[?] Find recently opened files",
+            -- },
+            -- {
+            --     "<Leader>af",
+            --     function()
+            --         require("telescope.builtin").find_files({
+            --             no_ignore = true,
+            --         })
+            --     end,
+            --     desc = "List [A]ll [F]iles, does not respect .gitignore",
+            -- },
+            -- {
+            --     "<Leader>sf",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.find_files({
+            --             no_ignore = false,
+            --             hidden = true,
+            --         })
+            --     end,
+            --     desc = "Lists files in your current working directory, respects .gitignore",
+            -- },
+            -- {
+            --     "<Leader>sg",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.live_grep({
+            --             additional_args = { "--hidden" },
+            --         })
+            --     end,
+            --     desc = "Search by Grep for a string in your current working directory and get results live as you type, respects .gitignore",
+            -- },
+            -- {
+            --     "<Leader>sw",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.grep_string()
+            --     end,
+            --     desc = "[S]earch current [W]ord",
+            -- },
+            -- {
+            --     "<Leader>ob",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.buffers()
+            --     end,
+            --     desc = "Lists [O]pen [B]uffers",
+            -- },
+            -- {
+            --     ";t",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.help_tags()
+            --     end,
+            --     desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
+            -- },
+            -- {
+            --     ";;",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.resume()
+            --     end,
+            --     desc = "Resume the previous telescope picker",
+            -- },
+            -- {
+            --     ";s",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.treesitter()
+            --     end,
+            --     desc = "Lists Function names, variables, from Treesitter",
+            -- },
+            -- {
+            --     "<Leader>of",
+            --     function()
+            --         local telescope = require("telescope")
+            --
+            --         local function telescope_buffer_dir()
+            --             return vim.fn.expand("%:p:h")
+            --         end
+            --
+            --         telescope.extensions.file_browser.file_browser({
+            --             path = "%:p:h",
+            --             cwd = telescope_buffer_dir(),
+            --             respect_gitignore = false,
+            --             hidden = true,
+            --             grouped = true,
+            --             previewer = false,
+            --             initial_mode = "normal",
+            --             layout_config = { height = 40 },
+            --         })
+            --     end,
+            --     desc = "Open File Browser with the path of the current buffer",
+            -- },
         },
         config = function(_, opts)
             local telescope = require("telescope")
