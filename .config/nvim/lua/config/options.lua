@@ -17,6 +17,9 @@ vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+-- set true colors
+vim.opt.termguicolors = true
+
 vim.opt.number = true
 
 vim.opt.title = true

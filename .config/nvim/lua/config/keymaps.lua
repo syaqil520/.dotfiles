@@ -61,6 +61,13 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
+vim.api.nvim_set_keymap(
+    "v",
+    "<leader>ri",
+    [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+    { noremap = true, silent = true, expr = false }
+)
+
 -- Diagnostics
 -- keymap.set("n", "<C-*>", function()
 --     vim.diagnostic.goto_next()
