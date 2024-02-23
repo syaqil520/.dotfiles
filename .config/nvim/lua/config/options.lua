@@ -35,7 +35,10 @@ vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.textwidth = 0
+vim.opt.columns = 80
+vim.opt.linebreak = true
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.splitbelow = true
