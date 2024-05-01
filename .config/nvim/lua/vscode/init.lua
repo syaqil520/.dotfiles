@@ -97,6 +97,37 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 
+-- close editor
+keymap.set("n", "<Space>bd", function()
+    vscode.action("workbench.action.closeActiveEditor")
+end, nsOpts)
+
+-- split
+keymap.set("n", "<Space>w-", function()
+    vscode.action("workbench.action.splitEditorDown")
+end, nsOpts)
+
+keymap.set("x", "<Space>w-", function()
+    vscode.action("workbench.action.splitEditorDown")
+end, nsOpts)
+
+keymap.set("n", "<Space>w|", function()
+    vscode.action("workbench.action.splitEditorRight")
+end, nsOpts)
+
+keymap.set("x", "<Space>w|", function()
+    vscode.action("workbench.action.splitEditorRight")
+end, nsOpts)
+
+-- workaround for dirty "unmodified" with vim undo
+vim.keymap.set("n", "u", function()
+    vscode.action("undo")
+end, { noremap = true })
+
+vim.keymap.set("n", "<C-r>", function()
+    vscode.action("redo")
+end, { noremap = true })
+
 -- Do things without affecting the registers
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')
