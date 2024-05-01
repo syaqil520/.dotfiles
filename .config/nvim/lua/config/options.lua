@@ -10,6 +10,7 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.smarttab = true
+vim.opt.breakindent = true
 
 vim.g.mapleader = " "
 -- encoding
@@ -24,7 +25,6 @@ vim.opt.number = true
 
 vim.opt.title = true
 vim.opt.hlsearch = true
-vim.opt.backup = true
 vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
@@ -44,7 +44,13 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.clipboard = "unnamedplus"
+
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
+vim.g.autoformat = true
 
 vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
@@ -53,29 +59,18 @@ if vim.fn.has("nvim-0.8") == 1 then
     vim.opt.cmdheight = 0
 end
 
-if vim.fn.has("wsl") == 1 then
-    --     vim.g.clipboard = {
-    --         name = "WslClipboard",
-    --         copy = {
-    --             ["+"] = "clip.exe",
-    --             ["*"] = "clip.exe",
-    --         },
-    --         paste = {
-    --             ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    --             ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    --         },
-    --         cache_enabled = 0,
-    --     }
-    vim.g.clipboard = {
-        name = "win32yank-wsl",
-        copy = {
-            ["+"] = "win32yank.exe -i --crlf",
-            ["*"] = "win32yank.exe -i --crlf",
-        },
-        paste = {
-            ["+"] = "win32yank.exe -o --lf",
-            ["*"] = "win32yank.exe -o --lf",
-        },
-        cache_enabled = false,
-    }
-end
+vim.opt.clipboard = "unnamedplus"
+-- if vim.fn.has("wsl") == 1 then
+--     vim.g.clipboard = {
+--         name = "win32yank-wsl",
+--         copy = {
+--             ["+"] = "win32yank.exe -i --crlf",
+--             ["*"] = "win32yank.exe -i --crlf",
+--         },
+--         paste = {
+--             ["+"] = "win32yank.exe -o --lf",
+--             ["*"] = "win32yank.exe -o --lf",
+--         },
+--         cache_enabled = false,
+--     }
+-- end

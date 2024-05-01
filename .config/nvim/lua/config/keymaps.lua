@@ -23,9 +23,13 @@ keymap.set("v", "<Leader>D", '"_D')
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- center when go end of line
+keymap.set("n", "G", "Gzz")
+
 -- Increment/Decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+-- TODO: need to think of new keymap
+-- keymap.set("v", "+", "<C-a>")
+-- keymap.set("n", "-", "<C-x>")
 
 -- Delete a word backwards
 keymap.set("n", "dw", 'vb"_d')

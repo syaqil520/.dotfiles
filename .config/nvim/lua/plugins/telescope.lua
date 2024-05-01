@@ -16,13 +16,6 @@ return {
                 end,
                 desc = "[D]ocument [S]ymbol",
             },
-            -- {
-            --     "gr",
-            --     function()
-            --         require("telescope.builtin").lsp_references()
-            --     end,
-            --     desc = "[G]o to [R]eference",
-            -- },
             {
                 "<Leader>ws",
                 function()
@@ -30,13 +23,6 @@ return {
                 end,
                 desc = "[W]orkspace [S]ymbol",
             },
-            -- {
-            --     "<Leader>?",
-            --     function()
-            --         require("telescope.builtin").oldfiles()
-            --     end,
-            --     desc = "[?] Find recently opened files",
-            -- },
             -- {
             --     "<Leader>af",
             --     function()
@@ -79,7 +65,7 @@ return {
             --     "<Leader>ob",
             --     function()
             --         local builtin = require("telescope.builtin")
-            --         builtin.buffers()
+            --         builtin.
             --     end,
             --     desc = "Lists [O]pen [B]uffers",
             -- },
