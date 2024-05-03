@@ -128,6 +128,15 @@ vim.keymap.set("n", "<C-r>", function()
     vscode.action("redo")
 end, { noremap = true })
 
+-- close and open explorer
+vim.keymap.set("n", "<Space>e", function()
+    vscode.action("workbench.action.toggleSidebarVisibility")
+end, nsOpts)
+
+vim.keymap.set("x", "<Space>e", function()
+    vscode.action("workbench.action.toggleSidebarVisibility")
+end, nsOpts)
+
 -- Do things without affecting the registers
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')
