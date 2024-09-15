@@ -93,6 +93,7 @@ export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 # PAtH Variable
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
+PATH="$PATH":"$HOME/.pub-cache/bin/"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

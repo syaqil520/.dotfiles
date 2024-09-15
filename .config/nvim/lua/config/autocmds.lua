@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "json", "jsonc", "markdown" },
   callback = function()
-    vim.opt.conceallevel = 0
+    vim.opt_local.conceallevel = 0
   end,
 })
 
@@ -73,11 +73,16 @@ vim.api.nvim_create_autocmd("FileType", {
     "javascript.jsx",
     "javascriptreact",
     "typescriptreact",
+    "dart",
   },
   callback = function()
-    vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.autoindent = true
+    vim.opt_local.smartindent = true
+    vim.opt_local.smarttab = true
+    vim.opt_local.breakindent = true
   end,
 })
 

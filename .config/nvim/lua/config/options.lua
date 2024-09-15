@@ -4,9 +4,9 @@
 
 -- Indentation
 vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.smarttab = true
@@ -22,6 +22,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.termguicolors = true
 
 vim.opt.number = true
+vim.o.completeopt = "menuone,noselect,preview"
 
 vim.opt.title = true
 vim.opt.hlsearch = true
@@ -53,5 +54,4 @@ vim.g.autoformat = true
 
 -- vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 -- vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
-
 vim.opt.clipboard = "unnamedplus"

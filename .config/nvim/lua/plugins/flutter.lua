@@ -47,13 +47,21 @@ return {
         fvm = false,
         widget_guides = { enabled = true },
         lsp = {
+          -- on_attach = function ()
+          --   local lsp = require("neovim/nvim-lspconfig")
+          -- end,
+          color = {
+            enabled = true,
+            background = true,
+            virtual_text = false,
+          },
           settings = {
             showtodos = true,
             completefunctioncalls = true,
             analysisexcludedfolders = dartExcludedFolders,
             renamefileswithclasses = "prompt",
             updateimportsonrename = true,
-            enablesnippets = true,
+            enablesnippets = false,
           },
         },
         debugger = {
