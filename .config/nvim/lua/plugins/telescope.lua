@@ -45,6 +45,9 @@ return {
         mappings = {
           n = {},
         },
+        file_ignore_patterns = {
+          "node_modules",
+        },
       })
       opts.pickers = {
         diagnostics = {

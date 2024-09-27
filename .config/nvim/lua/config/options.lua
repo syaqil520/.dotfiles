@@ -8,7 +8,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
-vim.opt.smartindent = true
+vim.opt.smartindent = false
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 
@@ -52,6 +52,23 @@ vim.opt.foldenable = true
 
 vim.g.autoformat = true
 
+vim.g.lazyvim_php_lsp = "intelephense"
+
 -- vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 -- vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 vim.opt.clipboard = "unnamedplus"
+
+if vim.fn.has("wsl") == 1 then
+  vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = {
+      ["+"] = "clip.exe",
+      ["*"] = "clip.exe",
+    },
+    paste = {
+      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end

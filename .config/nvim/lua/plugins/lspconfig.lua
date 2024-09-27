@@ -5,8 +5,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = {
-        enabled = true,
-        exclude = { "dart" },
+        -- exclude = { "dart" },
+        enabled = false,
       },
       servers = {
         volar = {
@@ -15,6 +15,9 @@ return {
             "vue",
           },
           root_dir = util.root_pattern("src/App.vue"),
+        },
+        phpcs = {
+          enabled = false,
         },
       },
     },
