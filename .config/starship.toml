@@ -1,23 +1,22 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](surface0)\
+[ ](text)\
 $os\
-$username\
-[](bg:blue fg:surface0)\
+[](bg:blue fg:text)\
 $directory\
-[](fg:blue bg:maroon)\
+[](fg:blue bg:yellow)\
 $git_branch\
 $git_status\
-[ ](fg:maroon)\
+[ ](fg:yellow)\
 $line_break$character
 """
-
-right_format = """
-[](yellow)\
-$cmd_duration\
-[▓▒░](fg:yellow)\
-"""
+#
+# right_format = """
+# [](yellow)\
+# $cmd_duration\
+# [▓▒░ ](fg:yellow)\
+# """
 
 palette = 'catppuccin_mocha'
 
@@ -49,77 +48,40 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
+continuation_prompt = '▶▶ '
+
 [os]
 disabled = false
-style = "bg:surface0 fg:text"
+style = "bg:text fg:mantle"
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = ""
-Manjaro = ""
+Windows = " 󰍲 "
+Ubuntu = " 󰕈 "
+Macos = "  "
 Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-
-[username]
-disabled = true
-show_always = true
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:text"
-format = '[ $user ]($style)'
+Arch = " 󰣇 "
 
 [directory]
 style = "bold fg:mantle bg:blue"
-format = "[ $path ]($style)"
+format = "[  $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-# [directory.substitutions]
-# "Documents" = "󰈙 "
-# "Downloads" = " "
-# "Music" = "󰝚 "
-# "Pictures" = " "
-# "Developer" = "󰲋 "
-
 [git_branch]
 symbol = ""
-style = "bg:pink"
-format = '[[ $symbol $branch ](fg:base bg:maroon)]($style)'
+style = "bg:yellow"
+format = '[[  $symbol $branch ](fg:base bg:yellow)]($style)'
 
 [git_status]
-style = "bg:maroon"
-format = '[[($all_status$ahead_behind )](fg:base bg:maroon)]($style)'
-
-[docker_context]
-symbol = ""
-style = "bg:maroon"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
-
-[time]
-disabled = true
-time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+style = "bg:yellow"
+format = '[[($all_status$ahead_behind )](fg:base bg:yellow)]($style)'
 
 [cmd_duration]
 disabled = false
-show_milliseconds = true
-min_time = 4
+show_milliseconds = false
+min_time = 2_100
 style = "bg:yellow"
-format = '[[  $duration ](fg:mantle bg:yellow)]($style)'
+format = '[[ $duration 󱦟 ](fg:surface0 bg:yellow)]($style)'
 
 [line_break]
 disabled = false

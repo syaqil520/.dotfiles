@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -5,8 +12,6 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-# init starship prompt
-eval "$(starship init zsh)"
 
 # setup zinit package manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -18,6 +23,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zi ice depth=1; zi light romkatv/powerlevel10k
 
 zi snippet OMZP::git
 zi snippet OMZP::sudo
@@ -116,3 +122,6 @@ else
   PATH="$PATH":"$HOME/.pub-cache/bin/"
 
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
