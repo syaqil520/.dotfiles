@@ -13,7 +13,6 @@ return {
       "js-debug-adapter",
       "prettier",
       "pretty-php",
-      "swift-mesonlsp",
     },
   },
 }

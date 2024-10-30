@@ -1,3 +1,24 @@
+local function xcodebuild_device()
+  if vim.g.xcodebuild_platform == "macOS" then
+    return " macOS"
+  end
+
+  local deviceIcon = ""
+  if vim.g.xcodebuild_platform:match("watch") then
+    deviceIcon = "􀟤"
+  elseif vim.g.xcodebuild_platform:match("tv") then
+    deviceIcon = "􀡴 "
+  elseif vim.g.xcodebuild_platform:match("vision") then
+    deviceIcon = "􁎖 "
+  end
+
+  if vim.g.xcodebuild_os then
+    return deviceIcon .. " " .. vim.g.xcodebuild_device_name .. " (" .. vim.g.xcodebuild_os .. ")"
+  end
+
+  return deviceIcon .. " " .. vim.g.xcodebuild_device_name
+end
+
 return {
   {
     "akinsho/bufferline.nvim",
@@ -35,7 +56,7 @@ return {
           {
             "filename",
             file_status = true, -- displays file status (readonly status, modified status)
-            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
           },
         },
         lualine_x = {
@@ -44,8 +65,11 @@ return {
             sources = { "nvim_diagnostic" },
             symbols = { error = " ", warn = " ", info = " ", hint = " " },
           },
-          "encoding",
+          -- "encoding",
           "filetype",
+          { "' ' .. vim.g.xcodebuild_last_status" },
+          { "' ' .. vim.g.xcodebuild_scheme" },
+          { xcodebuild_device },
         },
         lualine_y = { "progress" },
         lualine_z = { "location" },
@@ -57,10 +81,12 @@ return {
           {
             "filename",
             file_status = true, -- displays file status (readonly status, modified status)
-            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
           },
         },
-        lualine_x = { "location" },
+        lualine_x = {
+          "location",
+        },
         lualine_y = {},
         lualine_z = {},
       },

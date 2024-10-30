@@ -77,3 +77,5 @@ vim.keymap.set("n", "<RightMouse>", function()
   local options = vim.bo.ft == "Neo-tree" and "neo-tree" or "default"
   require("menu").open(options, { mouse = true })
 end, {})
+
+vim.keymap.set("n", "<leader>X", "<cmd>XcodebuildPicker<cr>", { desc = "Show Xcodebuild Actions" })
