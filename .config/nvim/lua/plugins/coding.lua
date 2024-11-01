@@ -52,7 +52,7 @@ return {
     },
     opts = function(_, opts)
       local cmp = require("cmp")
-      table.insert(opts.sources, { name = "emoji" })
+      -- table.insert(opts.sources, { name = "emoji" })
       require("vim-react-snippets").lazy_load()
       opts.experimental.ghost_text = false
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
