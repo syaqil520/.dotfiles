@@ -9,16 +9,20 @@ local g = vim.g
 g.mapleader = " "
 
 -- set true colors
-vim.opt.termguicolors = true
+opt.termguicolors = true
 
 -- Indentation
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.breakindent = true
+opt.expandtab = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.autoindent = true
+opt.smartindent = true
+opt.smarttab = true
+opt.breakindent = true
+
+vim.opt.timeoutlen = 1000
+vim.opt.ttimeoutlen = 0
 
 -- encoding
 vim.scriptencoding = "utf-8"
@@ -55,7 +59,6 @@ vim.opt.foldenable = true
 vim.g.autoformat = true
 
 vim.g.lazyvim_php_lsp = "intelephense"
-
 vim.opt.clipboard = "unnamedplus"
 
 if vim.fn.has("wsl") == 1 then
