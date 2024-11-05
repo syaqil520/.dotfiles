@@ -9,6 +9,8 @@
 RCS
 .+,v
 
+vscode/
+
 CVS
 \.\#.+       # CVS conflict files / emacs lock files
 \.cvsignore
