@@ -16,13 +16,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Restore cursor on nvim exit
-vim.api.nvim_create_autocmd("VimLeave", {
-  callback = function()
-    vim.opt.guicursor = "a:ver25-blinkon50-blinkoff50-blinkwait50"
-  end,
-})
-
 local lsp_conficts, _ = pcall(vim.api.nvim_get_autocmds, { group = "LspAttach_conflicts" })
 if not lsp_conficts then
   vim.api.nvim_create_augroup("LspAttach_conflicts", {})

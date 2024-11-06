@@ -3,10 +3,6 @@ local util = require("lspconfig.util")
 return {
   {
     "neovim/nvim-lspconfig",
-    config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.sourcekit.setup({})
-    end,
     opts = {
       inlay_hints = {
         enabled = true,
@@ -39,28 +35,28 @@ return {
               },
             },
           },
-
-          sourcekit = {
-            capabilities = {
-              workspace = {
-                didChangeWatchedFiles = {
-                  dynamicRegistration = true,
-                },
-              },
-            },
-            keys = {},
-            cmd = {
-              vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")),
-            },
-            filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
-            root_dir = function(filename, _)
-              return util.root_pattern("buildServer.json")(filename)
-                or util.root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
-                or util.root_pattern("Package.swift")(filename)
-                or util.find_git_ancestor(filename)
-            end,
-          },
         },
+
+        -- sourcekit = {
+        --   capabilities = {
+        --     workspace = {
+        --       didChangeWatchedFiles = {
+        --         dynamicRegistration = true,
+        --       },
+        --     },
+        --   },
+        --   keys = {},
+        --   cmd = {
+        --     vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")),
+        --   },
+        --   filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+        --   root_dir = function(filename, _)
+        --     return util.root_pattern("buildServer.json")(filename)
+        --       or util.root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
+        --       or util.root_pattern("Package.swift")(filename)
+        --       or util.find_git_ancestor(filename)
+        --   end,
+        -- },
       },
     },
   },
