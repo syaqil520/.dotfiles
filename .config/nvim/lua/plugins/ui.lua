@@ -1,32 +1,12 @@
 return {
 
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
-    ██████╗  █████╗ ██╗███████╗ █████╗  █████╗ 
-    ██╔═══██╗██╔══██╗██║╚══███╔╝██╔══██╗██╔══██╗
-    ██║   ██║███████║██║  ███╔╝ ███████║███████║
-    ██║▄▄ ██║██╔══██║██║ ███╔╝  ██╔══██║██╔══██║
-    ╚██████╔╝██║  ██║██║███████╗██║  ██║██║  ██║
-    ╚══▀▀═╝ ╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-      ]]
-
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
-  },
-
   "nvim-lua/plenary.nvim",
-
   {
     "nvchad/ui",
     config = function()
       require("nvchad")
     end,
   },
-
   {
     "nvchad/base46",
     lazy = true,
@@ -34,8 +14,8 @@ return {
       require("base46").load_all_highlights()
     end,
   },
-
   "nvchad/volt",
+
   {
     "folke/noice.nvim",
     opts = function(_, opts)

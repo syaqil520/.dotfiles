@@ -1,30 +1,4 @@
 return {
-  -- debugger
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "rcarriga/nvim-dap-ui",
-    },
-    event = "VeryLazy",
-    config = function()
-      require("dapui").setup({
-        icons = { expanded = "▾", collapsed = "▸" },
-        layouts = {
-          {
-            elements = {
-              { id = "scopes", size = 0.25 },
-              "breakpoints",
-              "stacks",
-              "watches",
-            },
-            size = 10, -- columns
-            position = "bottom",
-          },
-        },
-      })
-    end,
-  },
   -- flutter
   {
     "akinsho/flutter-tools.nvim",
@@ -37,6 +11,7 @@ return {
       local dartExcludedFolders = {
         vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
         vim.fn.expand("$HOME/.pub-cache"),
+        -- WARNING: enable on Mac
         -- vim.fn.expand("/opt/homebrew/"),
         vim.fn.expand("$HOME/tools/flutter/"),
       }

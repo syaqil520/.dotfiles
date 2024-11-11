@@ -1,6 +1,6 @@
 return {
   {
-    "nvim-cmp",
+    "hrsh7th/nvim-cmp",
     dependencies = {
       "mlaursen/vim-react-snippets",
       "L3MON4D3/LuaSnip",

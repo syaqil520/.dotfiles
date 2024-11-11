@@ -97,7 +97,11 @@ return {
     enabled = false,
   },
   {
-    "catpuccin/nvim",
+    "catppuccin/nvim",
+    enabled = false,
+  },
+  {
+    "nvimdev/dashboard-nvim",
     enabled = false,
   },
 }

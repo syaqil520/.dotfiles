@@ -21,8 +21,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "javascriptreact",
     "typescriptreact",
     "dart",
-    "json",
-    "jsonc",
   },
   callback = function()
     vim.opt_local.tabstop = 2
@@ -37,6 +35,22 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
+    "PlenaryTestPopup",
+    "checkhealth",
+    "dbout",
+    "gitsigns-blame",
+    "grug-far",
+    "help",
+    "lspinfo",
+    "neotest-output",
+    "neotest-output-panel",
+    "neotest-summary",
+    "notify",
+    "qf",
+    "snacks_win",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
     "oil",
   },
   callback = function(event)
@@ -50,6 +64,28 @@ vim.api.nvim_create_autocmd("FileType", {
         silent = true,
         desc = "Quit buffer",
       })
+    end)
+  end,
+})
+
+-- keep cursor unchanged after quiting
+vim.api.nvim_create_autocmd("VimLeave", {
+  group = vim.api.nvim_create_augroup("Exit", { clear = true }),
+  command = "set guicursor=a:ver90-blinkwait500-blinkon500-blinkoff250",
+  desc = "Set cursor back to beam when leaving Neovim.",
+})
+
+-- nvim tree snack rename
+local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
+vim.api.nvim_create_autocmd("User", {
+  pattern = "NvimTreeSetup",
+  callback = function()
+    local events = require("nvim-tree.api").events
+    events.subscribe(events.Event.NodeRenamed, function(data)
+      if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
+        data = data
+        Snacks.rename.on_rename_file(data.old_name, data.new_name)
+      end
     end)
   end,
 })

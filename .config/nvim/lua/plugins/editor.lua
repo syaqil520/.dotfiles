@@ -2,6 +2,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    lazy = false,
     opts = {
       filters = { dotfiles = false },
       disable_netrw = true,
@@ -35,7 +36,7 @@ return {
       },
       actions = {
         open_file = {
-          quit_on_open = true,
+          quit_on_open = false,
           window_picker = { enable = false },
         },
       },
@@ -44,20 +45,6 @@ return {
       },
     },
     config = function(_, opts)
-      local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "NvimTreeSetup",
-        callback = function()
-          local events = require("nvim-tree.api").events
-          events.subscribe(events.Event.NodeRenamed, function(data)
-            if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
-              data = data
-              Snacks.rename.on_rename_file(data.old_name, data.new_name)
-            end
-          end)
-        end,
-      })
-
       vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" })
       require("nvim-tree").setup(opts)
     end,
@@ -84,7 +71,7 @@ return {
     ---@type oil.SetupOpts
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     config = function()
-      vim.keymap.set("n", "<leader>E", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+      vim.keymap.set("n", "<leader>E", "<CMD>Oil --float<CR>", { desc = "Open Oil editor" })
       require("oil").setup({
         default_file_explorer = false,
         delete_to_trash = true,
@@ -97,6 +84,23 @@ return {
   },
   {
     "folke/trouble.nvim",
-    keys = {},
+    keys = {
+      { "<leader>cs", false },
+      { "<leader>cS", false },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    keys = function()
+      -- stylua: ignore
+      return {
+        { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
+        { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
+        { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
+        { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+        { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+        { "<leader>fT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+      }
+    end,
   },
 }
