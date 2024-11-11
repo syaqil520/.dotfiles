@@ -121,6 +121,13 @@ else
   PATH="$HOME/.config/composer/vendor/bin:$PATH"
   PATH="$PATH":"$HOME/.pub-cache/bin/"
 
+  alias un='paru -Rns' # uninstall package
+  alias up='paru -Syu' # update system/package/aur
+  alias pl='paru -Qs' # list installed package
+  alias pa='paru -Ss' # list available package
+  alias pc='paru -Sc' # remove unused cache
+  alias po='paru -Qtdq | paru -Rns -' # remove unused packages, also try > paru -Qqd | paru -Rsu --print
+
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
