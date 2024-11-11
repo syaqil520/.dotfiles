@@ -3,66 +3,67 @@
 -- Add any additional options hereby
 
 local opt = vim.opt
-local o = vim.o
 local g = vim.g
 
 g.mapleader = " "
 
--- set true colors
-opt.termguicolors = true
+-- [[ Setting options ]]
+opt.number = true
+opt.relativenumber = true
+opt.mouse = "a"
+opt.showmode = false
 
--- Indentation
+-- Indentaion
 opt.expandtab = true
+opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.autoindent = true
 opt.smartindent = true
-opt.smarttab = true
+
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
+
+opt.termguicolors = true
 opt.breakindent = true
+opt.undofile = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.signcolumn = "yes"
+opt.updatetime = 250
+opt.timeoutlen = 300
+opt.splitright = true
+opt.splitbelow = true
+opt.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.inccommand = "split"
+opt.cursorline = true
+opt.scrolloff = 10
 
-vim.opt.timeoutlen = 1000
-vim.opt.ttimeoutlen = 0
+opt.title = true
+opt.hlsearch = true
+opt.laststatus = 2
+opt.linebreak = true
+opt.inccommand = "split"
+opt.wrap = true
+opt.textwidth = 0
 
--- encoding
-vim.scriptencoding = "utf-8"
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+opt.backspace = { "start", "eol", "indent" }
+opt.wildignore:append({ "*/node_modules/*" })
 
-vim.opt.number = true
-vim.opt.title = true
-vim.opt.hlsearch = true
-vim.opt.backup = false
-vim.opt.showcmd = true
-vim.opt.cmdheight = 1
-vim.opt.laststatus = 2
-vim.opt.scrolloff = 10
-vim.opt.shell = "zsh"
-vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
-vim.opt.inccommand = "split"
-vim.opt.ignorecase = true
+opt.backup = false
+opt.backupskip = { "/tmp/*", "/private/tmp/*" }
+opt.shell = "zsh"
 
-vim.opt.wrap = true
-vim.opt.textwidth = 0
-vim.opt.columns = 80
-vim.opt.linebreak = true
-vim.opt.backspace = { "start", "eol", "indent" }
-vim.opt.wildignore:append({ "*/node_modules/*" })
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.foldcolumn = "1"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-
-vim.g.autoformat = true
-
-vim.g.lazyvim_php_lsp = "intelephense"
-vim.opt.clipboard = "unnamedplus"
+opt.foldcolumn = "1"
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
 
 if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
+  g.clipboard = {
     name = "WslClipboard",
     copy = {
       ["+"] = "clip.exe",
@@ -75,3 +76,6 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 end
+
+-- Custom LazyVim option
+g.lazyvim_php_lsp = "intelephense"

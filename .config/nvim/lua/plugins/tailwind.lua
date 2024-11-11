@@ -403,4 +403,5 @@ M.colors = {
   },
 }
 
-return M.plugin
+-- return M.plugin
+return {}

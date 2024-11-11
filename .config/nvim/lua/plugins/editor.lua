@@ -1,90 +1,102 @@
 return {
   {
-    "akinsho/bufferline.nvim",
-    lazy = false,
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = {
-      options = {
-        underline_indicator = true,
-        separator_style = "thick",
-        show_buffer_close_icons = true,
-        show_close_icon = false,
-        diagnostic = "nvim_lsp",
-        always_show_bufferline = true,
-        middle_mouse_command = "bdelete! %d",
-        indicator = {
-          style = "underline",
+      filters = { dotfiles = false },
+      disable_netrw = true,
+      hijack_cursor = true,
+      sync_root_with_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
+      view = {
+        width = 35,
+        preserve_window_proportions = true,
+      },
+      renderer = {
+        root_folder_label = false,
+        highlight_git = true,
+        indent_markers = { enable = true },
+        icons = {
+          glyphs = {
+            default = "󰈚",
+            folder = {
+              default = "",
+              empty = "",
+              empty_open = "",
+              open = "",
+              symlink = "",
+            },
+            git = { unmerged = "" },
+          },
         },
       },
+      actions = {
+        open_file = {
+          quit_on_open = true,
+          window_picker = { enable = false },
+        },
+      },
+      trash = {
+        cmd = "trash-put",
+      },
     },
+    config = function(_, opts)
+      local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NvimTreeSetup",
+        callback = function()
+          local events = require("nvim-tree.api").events
+          events.subscribe(events.Event.NodeRenamed, function(data)
+            if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
+              data = data
+              Snacks.rename.on_rename_file(data.old_name, data.new_name)
+            end
+          end)
+        end,
+      })
+
+      vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" })
+      require("nvim-tree").setup(opts)
+    end,
   },
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = "onedark",
-        section_separators = { left = "", right = "" },
-        component_separators = { left = "", right = "" },
-        disabled_filetypes = {},
-      },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = {
-          {
-            "filename",
-            file_status = true, -- displays file status (readonly status, modified status)
-            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-          },
-        },
-        lualine_x = {
-          {
-            "diagnostics",
-            sources = { "nvim_diagnostic" },
-            symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          },
-          -- "encoding",
-          "filetype",
-        },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
-          {
-            "filename",
-            file_status = true, -- displays file status (readonly status, modified status)
-            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-          },
-        },
-        lualine_x = {
-          "location",
-        },
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      extensions = { "fugitive" },
+    "otavioschwanck/arrow.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
     },
+    config = function()
+      vim.keymap.set("n", "<tab>", require("arrow.persist").previous, { desc = "Move to next arrow persist" })
+      vim.keymap.set("n", "<S-tab>", require("arrow.persist").next, { desc = "Move to previous arrow persist" })
+      require("arrow").setup({
+
+        show_icons = true,
+        leader_key = "m", -- Recommended to be a single key
+        buffer_leader_key = "M", -- Per Buffer Mappings
+      })
+    end,
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_by_name = {
-            ".git",
-            ".DS_Store",
-          },
-          always_show_by_pattern = { -- uses glob style patterns
-            ".env*",
-          },
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    config = function()
+      vim.keymap.set("n", "<leader>E", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+      require("oil").setup({
+        default_file_explorer = false,
+        delete_to_trash = true,
+        skip_confirm_for_simple_edits = true,
+        view_options = {
+          show_hidden = true,
         },
-      },
-    },
+      })
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    keys = {},
   },
 }

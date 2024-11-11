@@ -2,6 +2,12 @@ local util = require("lspconfig.util")
 
 return {
   {
+    "williamboman/mason.nvim",
+    keys = {
+      { "<leader>cm", false },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = {
