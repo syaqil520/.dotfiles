@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.breakindent = true
   end,
 })
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),

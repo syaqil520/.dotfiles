@@ -36,12 +36,13 @@ return {
       },
       actions = {
         open_file = {
-          quit_on_open = false,
+          quit_on_open = true,
           window_picker = { enable = false },
         },
       },
       trash = {
-        cmd = "trash-put",
+        -- WARNING: Mac = trash | Arch = trash-put (need to have trash-cli installed)
+        cmd = "trash",
       },
     },
     config = function(_, opts)

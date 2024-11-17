@@ -73,13 +73,6 @@ return {
   },
 
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 5000,
-    },
-  },
-
-  {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
       scope = { highlight = { "Function", "Label" }, priority = 500 },
