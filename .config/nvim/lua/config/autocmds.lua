@@ -7,10 +7,11 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("indentation"),
   pattern = {
     "html",
-    "js",
-    "ts",
+    "javascript",
+    "typescript",
     "vue",
     "css",
     "scss",
@@ -21,6 +22,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "javascriptreact",
     "typescriptreact",
     "dart",
+    "json",
   },
   callback = function()
     vim.opt_local.tabstop = 2

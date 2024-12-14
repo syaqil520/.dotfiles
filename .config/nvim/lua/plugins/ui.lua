@@ -1,4 +1,14 @@
 return {
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
 
   "nvim-lua/plenary.nvim",
   {
@@ -70,12 +80,5 @@ return {
 
       opts.presets.lsp_doc_border = true
     end,
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      scope = { highlight = { "Function", "Label" }, priority = 500 },
-    },
   },
 }

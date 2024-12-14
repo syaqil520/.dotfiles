@@ -12,7 +12,7 @@ return {
         vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
         vim.fn.expand("$HOME/.pub-cache"),
         -- WARNING: enable on Mac
-        -- vim.fn.expand("/opt/homebrew/"),
+        vim.fn.expand("/opt/homebrew/"),
         vim.fn.expand("$HOME/tools/flutter/"),
       }
 
