@@ -1,84 +1,108 @@
 return {
-  {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    {
+        "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("onedark").setup({ style = "darker" })
+            -- require("onedark").load()
+        end,
     },
-  },
+    "nvim-lua/plenary.nvim",
+    { "nvim-tree/nvim-web-devicons", lazy = true },
 
-  "nvim-lua/plenary.nvim",
-  {
-    "nvchad/ui",
-    config = function()
-      require("nvchad")
-    end,
-  },
-  {
-    "nvchad/base46",
-    lazy = true,
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-  "nvchad/volt",
-
-  {
-    "folke/noice.nvim",
-    opts = function(_, opts)
-      table.insert(opts.routes, {
-        filter = {
-          event = "notify",
-          any = {
-            { find = "No information available" },
-            { find = "No signature help available" },
-          },
-        },
-        opts = { skip = true },
-      })
-      local focused = true
-      vim.api.nvim_create_autocmd("FocusGained", {
-        callback = function()
-          focused = true
+    {
+        "nvchad/ui",
+        config = function()
+            require("nvchad")
         end,
-      })
-      vim.api.nvim_create_autocmd("FocusLost", {
-        callback = function()
-          focused = false
+    },
+
+    {
+        "nvchad/base46",
+        lazy = true,
+        build = function()
+            require("base46").load_all_highlights()
         end,
-      })
-      table.insert(opts.routes, 1, {
-        filter = {
-          cond = function()
-            return not focused
-          end,
-        },
-        view = "notify_send",
-        opts = { stop = false },
-      })
+    },
 
-      opts.commands = {
-        all = {
-          -- options for the message history that you get with `:Noice`
-          view = "split",
-          opts = { enter = true, format = "details" },
-          filter = {},
+    "nvchad/volt", -- optional, needed for theme switcher
+    -- or just use Telescope themes
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            lsp = {
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true,
+                },
+            },
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            { find = "%d+L, %d+B" },
+                            { find = "; after #%d+" },
+                            { find = "; before #%d+" },
+                        },
+                    },
+                    view = "mini",
+                },
+            },
+            presets = {
+                bottom_search = true, -- use a classic bottom cmdline for search
+                command_palette = true, -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = false, -- enables an input dialog for inc-rennhme.nvim
+                lsp_doc_border = false, -- add a border to hover docs and signature help
+            },
         },
-      }
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function(event)
-          vim.schedule(function()
-            require("noice.text.markdown").keys(event.buf)
-          end)
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        },
+        -- stylua: ignore
+        keys = {
+            { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+            { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+            { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
+            { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+            { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+            { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
+            { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
+            { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
+        },
+        config = function(_, opts)
+            -- HACK: noice shows messages from before it was enabled,
+            -- but this is not ideal when Lazy is installing plugins,
+            -- so clear the messages in this case.
+            if vim.o.filetype == "lazy" then
+                vim.cmd([[messages clear]])
+            end
+            require("noice").setup(opts)
         end,
-      })
-
-      opts.presets.lsp_doc_border = true
-    end,
-  },
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            presets = "helix",
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    },
 }
