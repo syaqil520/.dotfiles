@@ -23,6 +23,9 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
+-- Quit neovim
+map("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit All" })
+
 -- Move Lines
 -- have some issue when pressing esc and j/k fast enough will trigger this
 -- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
@@ -204,3 +207,6 @@ end, { desc = "which_key_ignore" })
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- Delete word with alt
+map("i", "<A-BS>", "<C-w>", { desc = "which_key_ignore" })

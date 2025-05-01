@@ -61,12 +61,13 @@ return {
           "node_modules",
         },
       },
-      notifier = { enabled = true },
+      notifier = { enabled = true, timeout = 2500 },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      toggle = { enabled = true },
     },
     -- stylua: ignore
     keys = {
