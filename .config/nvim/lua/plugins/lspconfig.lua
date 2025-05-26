@@ -3,9 +3,9 @@ return {
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     -- Mason must be loaded before its dependents so we need to set it up here.
-    { "williamboman/mason.nvim", opts = {} },
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    { "mason-org/mason.nvim", opts = {}, version = "^1.0.0" },
+    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     { "j-hui/fidget.nvim", opts = {} },
     -- Allows extra capabilities provided by blink.cmp
     "saghen/blink.cmp",
@@ -167,6 +167,7 @@ return {
         end
       end,
     })
+
     local execute = function(opts)
       local params = {
         command = opts.command,

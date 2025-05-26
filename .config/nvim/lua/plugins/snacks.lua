@@ -35,7 +35,10 @@ return {
       dashboard = { enabled = false },
       explorer = { enabled = false },
       image = { enabled = false },
-      indent = { enabled = true },
+      indent = {
+        enabled = true,
+        only_current = true, -- only show indent guides in the current window
+      },
       input = { enabled = true },
       picker = {
         enabled = true,
@@ -63,7 +66,7 @@ return {
       },
       notifier = { enabled = true, timeout = 2500 },
       quickfile = { enabled = true },
-      scope = { enabled = true },
+      scope = { enabled = false },
       scroll = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },

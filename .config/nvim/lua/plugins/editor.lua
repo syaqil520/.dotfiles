@@ -96,6 +96,10 @@ return {
           -- If multiple diagnostics are under the cursor, display all of them.
           multiple_diag_under_cursor = true,
           multilines = true,
+          show_source = {
+            enabled = false,
+            if_many = false,
+          },
         },
       })
     end,
