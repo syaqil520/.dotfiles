@@ -87,6 +87,7 @@ return {
         "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy",
         priority = 1000,
+        enabled = false,
         config = function()
             vim.diagnostic.config({ virtual_text = false })
             -- Default configuration

@@ -143,19 +143,19 @@ return {
                 },
             } or {},
             virtual_text = false,
-            -- virtual_text = {
-            --     source = "if_many",
-            --     spacing = 4,
-            --     format = function(diagnostic)
-            --         local diagnostic_message = {
-            --             [vim.diagnostic.severity.ERROR] = diagnostic.message,
-            --             [vim.diagnostic.severity.WARN] = diagnostic.message,
-            --             [vim.diagnostic.severity.INFO] = diagnostic.message,
-            --             [vim.diagnostic.severity.HINT] = diagnostic.message,
-            --         }
-            --         return diagnostic_message[diagnostic.severity]
-            --     end,
-            -- },
+            virtual_text = {
+                source = "if_many",
+                spacing = 4,
+                format = function(diagnostic)
+                    local diagnostic_message = {
+                        [vim.diagnostic.severity.ERROR] = diagnostic.message,
+                        [vim.diagnostic.severity.WARN] = diagnostic.message,
+                        [vim.diagnostic.severity.INFO] = diagnostic.message,
+                        [vim.diagnostic.severity.HINT] = diagnostic.message,
+                    }
+                    return diagnostic_message[diagnostic.severity]
+                end,
+            },
         })
 
         -- LSP servers and clients are able to communicate to each other what features they support.
@@ -166,45 +166,6 @@ return {
 
         local servers = {
             ts_ls = {},
-            vtsls = {
-                -- explicitly add default filetypes, so that we can extend
-                -- them in related extras
-                filetypes = {
-                    "javascript",
-                    "javascriptreact",
-                    "javascript.jsx",
-                    "typescript",
-                    "typescriptreact",
-                    "typescript.tsx",
-                },
-                settings = {
-                    complete_function_calls = true,
-                    vtsls = {
-                        enableMoveToFileCodeAction = true,
-                        autoUseWorkspaceTsdk = true,
-                        experimental = {
-                            maxInlayHintLength = 30,
-                            completion = {
-                                enableServerSideFuzzyMatch = true,
-                            },
-                        },
-                    },
-                    typescript = {
-                        updateImportsOnFileMove = { enabled = "always" },
-                        suggest = {
-                            completeFunctionCalls = true,
-                        },
-                        inlayHints = {
-                            enumMemberValues = { enabled = true },
-                            functionLikeReturnTypes = { enabled = true },
-                            parameterNames = { enabled = "literals" },
-                            parameterTypes = { enabled = true },
-                            propertyDeclarationTypes = { enabled = true },
-                            variableTypes = { enabled = false },
-                        },
-                    },
-                },
-            },
             lua_ls = {
                 -- cmd = { ... },
                 -- filetypes = { ... },
