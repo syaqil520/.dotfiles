@@ -100,6 +100,8 @@ return {
       { "<leader>fq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
       { "<leader>fu", function() Snacks.picker.undo() end, desc = "Undo History" },
       { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    },
+      { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Todo" },
+      { "<leader>fT", function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" }
+  },
     },
 }
