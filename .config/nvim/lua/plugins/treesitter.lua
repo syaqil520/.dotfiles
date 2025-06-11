@@ -14,7 +14,6 @@ return { -- Highlight, edit, and navigate code
         require("lazy.core.loader").add_to_rtp(plugin)
         require("nvim-treesitter.query_predicates")
     end,
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
         ensure_installed = {
             "bash",

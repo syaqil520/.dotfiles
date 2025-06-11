@@ -61,7 +61,7 @@ return {
                 -- By default, you may press `<c-space>` to show the documentation.
                 -- Optionally, set `auto_show = true` to show the documentation after a delay.
                 documentation = { auto_show = true, auto_show_delay_ms = 500 },
-                list = { selection = { preselect = false, auto_insert = false } },
+                list = { selection = { preselect = true, auto_insert = false } },
                 ghost_text = {
                     enabled = true,
                     -- Show the ghost text when an item has been selected

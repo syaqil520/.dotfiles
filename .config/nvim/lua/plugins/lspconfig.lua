@@ -142,7 +142,7 @@ return {
                     [vim.diagnostic.severity.HINT] = "󰌶 ",
                 },
             } or {},
-            virtual_text = false,
+            -- virtual_text = false,
             virtual_text = {
                 source = "if_many",
                 spacing = 4,
@@ -166,88 +166,15 @@ return {
 
         local servers = {
             ts_ls = {},
-            lua_ls = {
-                -- cmd = { ... },
-                -- filetypes = { ... },
-                -- capabilities = {},
-                settings = {
-                    Lua = {
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        diagnostics = {
-                            disable = { "missing-fields" },
-                            globals = { "vim" },
-                        },
-                    },
-                },
-            },
+            lua_ls = {},
             bashls = {},
             dockerls = {},
             docker_compose_language_service = {},
-            gopls = {
-                settings = {
-                    gopls = {
-                        gofumpt = true,
-                        codelenses = {
-                            gc_details = false,
-                            generate = true,
-                            regenerate_cgo = true,
-                            run_govulncheck = true,
-                            test = true,
-                            tidy = true,
-                            upgrade_dependency = true,
-                            vendor = true,
-                        },
-                        hints = {
-                            assignVariableTypes = true,
-                            compositeLiteralFields = true,
-                            compositeLiteralTypes = true,
-                            constantValues = true,
-                            functionTypeParameters = true,
-                            parameterNames = true,
-                            rangeVariableTypes = true,
-                        },
-                        analyses = {
-                            nilness = true,
-                            unusedparams = true,
-                            unusedwrite = true,
-                            useany = true,
-                        },
-                        usePlaceholders = true,
-                        completeUnimported = true,
-                        staticcheck = true,
-                        directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-                        semanticTokens = true,
-                    },
-                },
-            },
-            jsonls = {
-                -- lazy-load schemastore when needed
-                on_new_config = function(new_config)
-                    new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-                    vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-                end,
-                settings = {
-                    json = {
-                        format = {
-                            enable = true,
-                        },
-                        validate = { enable = true },
-                    },
-                },
-            },
+            gopls = {},
+            jsonls = {},
             marksman = {},
             prismals = {},
-            tailwindcss = {
-                -- exclude a filetype from the default_config
-                filetypes_exclude = { "markdown" },
-                -- add additional filetypes to the default_config
-                filetypes_include = {},
-                -- to fully override the default_config, change the below
-                -- filetypes = {}
-            },
+            tailwindcss = {},
         }
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
@@ -260,6 +187,7 @@ return {
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
         require("mason-lspconfig").setup({
+            automatic_enable = true,
             ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
             automatic_installation = false,
             handlers = {
