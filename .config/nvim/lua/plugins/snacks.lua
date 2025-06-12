@@ -74,7 +74,7 @@ return {
         },
     -- stylua: ignore
     keys = {
-      { "<leader><space>", function() Snacks.picker.files({ hidden = true, ignored = false }) end, desc = "Find Files" },
+      { "<leader><leader>", function() Snacks.picker.files({ hidden = true, ignored = false }) end, desc = "Find Files" },
       { "<leader>fw", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>f:", function() Snacks.picker.command_history() end, desc = "Command History" },
       { "<leader>fn", function() Snacks.picker.notifications() end, desc = "Notification History" },
