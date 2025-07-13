@@ -18,11 +18,6 @@ return {
         },
     },
     {
-        "windwp/nvim-ts-autotag",
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {},
-    },
-    {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
