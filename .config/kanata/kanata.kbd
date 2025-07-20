@@ -1,0 +1,82 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt fn rctl
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+
+  tap-timeout 140
+  hold-timeout 500
+
+  streak-count 3
+  streak-time 140
+  chord-timeout 50
+)
+
+(deftemplate charmod (char mod)
+  (switch 
+    ((key-timing $streak-count less-than $streak-time)) $char break
+    () (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char) break
+  )
+)
+
+(defchords lmod-home-row $chord-timeout
+  (a      ) a
+  (  s    ) s
+  (    d  ) d
+  (      f) f
+  (    d f) lctl
+  (  s d  ) lalt
+  (a s    ) lsft
+  (  s   f) lmet
+  (a s d  ) (multi lalt lsft)
+  (  s d f) (multi lctl lalt)
+  (a s d f) meh
+)
+
+(defchords rmod-home-row $chord-timeout
+  (j      ) j
+  (  k    ) k
+  (    l  ) l
+  (      ;) ;
+  (j k    ) rctl
+  (  k l  ) lalt
+  (    l ;) rsft
+  (j   l  ) rmet
+  (  k l ;) (multi lalt lsft)
+  (j k l  ) (multi lctl lalt)
+  (j k l ;) meh
+)
+
+(defalias
+  meh (multi ctl alt sft)
+
+  escctrl (tap-hold 100 100 esc lctl)
+  a (chord lmod-home-row a)
+  s (chord lmod-home-row s)
+  d (chord lmod-home-row d)
+  f (chord lmod-home-row f)
+  j (chord rmod-home-row j)
+  k (chord rmod-home-row k)
+  l (chord rmod-home-row l)
+  ; (chord rmod-home-row ;)
+)
+
+(deflayer base
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @escctrl  @a    @s   @d   @f    g    h   @j   @k   @l   @;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl     lmet lalt           spc            ralt fn rctl
+)
+
