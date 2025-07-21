@@ -20,7 +20,7 @@
 
   streak-count 3
   streak-time 140
-  chord-timeout 50
+  chord-timeout 60
 )
 
 (deftemplate charmod (char mod)
@@ -41,7 +41,7 @@
   (  s   f) lmet
   (a s d  ) (multi lalt lsft)
   (  s d f) (multi lctl lalt)
-  (a s d f) meh
+  (a s d f) @meh
 )
 
 (defchords rmod-home-row $chord-timeout
@@ -55,13 +55,13 @@
   (j   l  ) rmet
   (  k l ;) (multi lalt lsft)
   (j k l  ) (multi lctl lalt)
-  (j k l ;) meh
+  (j k l ;) @meh
 )
 
 (defalias
   meh (multi ctl alt sft)
 
-  escctrl (tap-hold 100 100 esc lctl)
+  escctrl (tap-hold 200 200 esc lctl)
   a (chord lmod-home-row a)
   s (chord lmod-home-row s)
   d (chord lmod-home-row d)

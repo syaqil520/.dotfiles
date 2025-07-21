@@ -7,7 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/elliott/.cargo/bin/kanata</string>
+            <string>/opt/homebrew/bin/kanata</string>
             <string>-c</string>
             <string>/Users/syaqilaizat/dotfiles/.config/kanata/kanata.kbd</string>
     </array>
