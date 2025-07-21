@@ -20,9 +20,9 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
+zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 zi ice depth=1; zi light romkatv/powerlevel10k
 
 zi snippet OMZP::git
@@ -73,25 +73,28 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
+# FZF Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+  --color=selected-bg:#45475A \
+  --color=border:#313244,label:#CDD6F4 \
+--border 
+--color border: #313244"
 
 # shell integration
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 
 # Custom Script
-function flutter-watch(){
-  tmux send-keys "flutter run $1 $2 $3 $4 --pid-file=/tmp/tf1.pid" Enter \;\
-  split-window -v \;\
-  send-keys 'npx -y nodemon -e dart -x "cat /tmp/tf1.pid | xargs kill -s USR1"' Enter \;\
-  resize-pane -y 5 -t 1 \;\
-  select-pane -t 0 \;
-}
 
 # custom config base on machine either mac or linux
 OS="$(uname -s)"
@@ -100,6 +103,10 @@ if [ "$OS" = "Darwin" ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+  alias kanatareload='launchctl stop com.qaizaa.kanata && launchctl start com.qaizaa.kanata'
+  export GOPATH="/usr/local/go"
+  export PATH=$GOPATH/bin:$PATH
 
 else
 
