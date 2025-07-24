@@ -1,1 +1,0 @@
-- follow this [guide](https://github.com/jtroo/kanata/discussions/1537)
