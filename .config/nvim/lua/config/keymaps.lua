@@ -39,16 +39,16 @@ map("v", "K", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { des
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bd", function()
-    Snacks.bufdelete()
+  Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 map("n", "<leader>bo", function()
-    Snacks.bufdelete.other()
+  Snacks.bufdelete.other()
 end, { desc = "Delete Other Buffers" })
 
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
-    vim.cmd("noh")
-    return "<esc>"
+  vim.cmd("noh")
+  return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 -- Clear search, diff update and redraw
@@ -81,18 +81,18 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 
 -- location list
 map("n", "<leader>xl", function()
-    local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-    if not success and err then
-        vim.notify(err, vim.log.levels.ERROR)
-    end
+  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
 end, { desc = "Location List" })
 
 -- quickfix list
 map("n", "<leader>xq", function()
-    local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-    if not success and err then
-        vim.notify(err, vim.log.levels.ERROR)
-    end
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
 end, { desc = "Quickfix List" })
 
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
@@ -100,11 +100,11 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
@@ -117,42 +117,42 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 local root_patterns = { ".git", "lua" }
 
 local function find_root()
-    local util = require("lspconfig.util")
-    return util.root_pattern(unpack(root_patterns))(vim.fn.expand("%:p"))
+  local util = require("lspconfig.util")
+  return util.root_pattern(unpack(root_patterns))(vim.fn.expand("%:p"))
 end
 
 -- lazygit
 if vim.fn.executable("lazygit") == 1 then
-    map("n", "<leader>gg", function()
-        Snacks.lazygit({ cwd = find_root() })
-    end, { desc = "Lazygit (Root Dir)" })
-    map("n", "<leader>gG", function()
-        Snacks.lazygit()
-    end, { desc = "Lazygit (cwd)" })
-    map("n", "<leader>gf", function()
-        Snacks.picker.git_log_file()
-    end, { desc = "Git Current File History" })
-    map("n", "<leader>gl", function()
-        Snacks.picker.git_log({ cwd = find_root() })
-    end, { desc = "Git Log" })
-    map("n", "<leader>gL", function()
-        Snacks.picker.git_log()
-    end, { desc = "Git Log (cwd)" })
+  map("n", "<leader>gg", function()
+    Snacks.lazygit({ cwd = find_root() })
+  end, { desc = "Lazygit (Root Dir)" })
+  map("n", "<leader>gG", function()
+    Snacks.lazygit()
+  end, { desc = "Lazygit (cwd)" })
+  map("n", "<leader>gf", function()
+    Snacks.picker.git_log_file()
+  end, { desc = "Git Current File History" })
+  map("n", "<leader>gl", function()
+    Snacks.picker.git_log({ cwd = find_root() })
+  end, { desc = "Git Log" })
+  map("n", "<leader>gL", function()
+    Snacks.picker.git_log()
+  end, { desc = "Git Log (cwd)" })
 end
 
 map("n", "<leader>gb", function()
-    Snacks.picker.git_log_line()
+  Snacks.picker.git_log_line()
 end, { desc = "Git Blame Line" })
 map({ "n", "x" }, "<leader>gB", function()
-    Snacks.gitbrowse()
+  Snacks.gitbrowse()
 end, { desc = "Git Browse (open)" })
 map({ "n", "x" }, "<leader>gY", function()
-    Snacks.gitbrowse({
-        open = function(url)
-            vim.fn.setreg("+", url)
-        end,
-        notify = false,
-    })
+  Snacks.gitbrowse({
+    open = function(url)
+      vim.fn.setreg("+", url)
+    end,
+    notify = false,
+  })
 end, { desc = "Git Browse (copy)" })
 
 -- windows
@@ -199,10 +199,10 @@ map("n", "N", "Nzzzv", opts)
 
 -- Terminal
 map("n", "<c-/>", function()
-    Snacks.terminal()
+  Snacks.terminal()
 end, { desc = "Terminal (Root Dir)" })
 map("n", "<c-_>", function()
-    Snacks.terminal()
+  Snacks.terminal()
 end, { desc = "which_key_ignore" })
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
