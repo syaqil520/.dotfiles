@@ -63,7 +63,7 @@ outer.right = 10
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
-alt-enter = 'exec-and-forget open -n /Applications/kitty.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 alt-f = 'exec-and-forget open -n /Applications/Firefox.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
