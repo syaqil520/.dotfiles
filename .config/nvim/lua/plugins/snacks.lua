@@ -36,7 +36,9 @@ return {
           { section = "startup" },
         },
       },
-      explorer = { enabled = false },
+      explorer = {
+        enabled = true,
+      },
       image = { enabled = true },
       indent = {
         enabled = false,
@@ -85,6 +87,7 @@ return {
       { "<leader>fr",       function() Snacks.picker.recent() end,                                                 desc = "Recent" },
       { "<leader>fR",       function() Snacks.picker.resume() end,                                                 desc = "Resume" },
       { '<leader>f"',       function() Snacks.picker.registers() end,                                              desc = "Registers" },
+      { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },

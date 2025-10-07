@@ -104,27 +104,6 @@ return {
         vim.lsp.config(server, config)
         vim.lsp.enable(server)
       end
-
-      -- workaround for gopls not supporting semanticTokensProvider
-      -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-      -- vim.api.nvim_create_autocmd("LspAttach", {
-      --   callback = function(args)
-      --     local client = vim.lsp.get_client_by_id(args.data.client_id)
-      --     if client and (not "gopls" or client.name == "gopls") then
-      --       if not client.server_capabilities.semanticTokensProvider then
-      --         local semantic = client.config.capabilities.textDocument.semanticTokens
-      --         client.server_capabilities.semanticTokensProvider = {
-      --           full = true,
-      --           legend = {
-      --             tokenTypes = semantic.tokenTypes,
-      --             tokenModifiers = semantic.tokenModifiers,
-      --           },
-      --           range = true,
-      --         }
-      --       end
-      --     end
-      --   end,
-      -- })
     end,
   },
 }

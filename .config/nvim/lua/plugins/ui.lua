@@ -3,22 +3,6 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
   {
-    "nvchad/ui",
-    config = function()
-      require("nvchad")
-    end,
-  },
-
-  {
-    "nvchad/base46",
-    lazy = true,
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-
-  "nvchad/volt", -- optional, needed for theme switcher
-  {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
@@ -51,14 +35,10 @@ return {
       },
     },
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     },
-        -- stylua: ignore
+    -- stylua: ignore
     keys = {
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
       { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
@@ -66,8 +46,6 @@ return {
       { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
       { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
       { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker" },
-      -- { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
-      -- { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
     },
     config = function(_, opts)
       -- HACK: noice shows messages from before it was enabled,

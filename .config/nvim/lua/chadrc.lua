@@ -22,7 +22,6 @@ local options = {
     },
 
     telescope = { enabled = false, style = "borderless" }, -- borderless / bordered
-
     statusline = {
       enabled = true,
       theme = "default", -- default/vscode/vscode_colored/minimal
