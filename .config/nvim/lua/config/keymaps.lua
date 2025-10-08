@@ -69,7 +69,7 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- save file
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -158,7 +158,6 @@ end, { desc = "Git Browse (copy)" })
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 -- map("n", "ss", ":split<Return>", opts)
 -- map("n", "sv", ":vsplit<Return>", opts)
 

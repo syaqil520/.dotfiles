@@ -27,11 +27,11 @@ return {
         },
       },
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
+        bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rennhme.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        lsp_doc_border = true, -- add a border to hover docs and signature help
       },
     },
     dependencies = {
@@ -54,6 +54,45 @@ return {
       if vim.o.filetype == "lazy" then
         vim.cmd([[messages clear]])
       end
+
+      -- HACK: Remove the noise for markdown file when there is no information
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      })
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        callback = function()
+          focused = false
+        end,
+      })
+      table.insert(opts.routes, 1, {
+        filter = {
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+        opts = { stop = false },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+
       require("noice").setup(opts)
     end,
   },

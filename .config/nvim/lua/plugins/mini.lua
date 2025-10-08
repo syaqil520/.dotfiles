@@ -124,7 +124,7 @@ return {
     version = "*",
     opts = {
       mappings = {
-        toggle = "<c-m>",
+        toggle = "gss",
       },
     },
   },

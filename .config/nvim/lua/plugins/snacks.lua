@@ -57,7 +57,8 @@ return {
             keys = {
               -- to close the picker on ESC instead of going to normal mode,
               -- add the following keymap to your config
-              -- ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<a-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
               ["<a-f>"] = {},
               ["<a-h>"] = {},
               ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
@@ -83,17 +84,20 @@ return {
       { "<leader><leader>", function() Snacks.picker.files({ hidden = true, ignored = false }) end,                desc = "Find Files" },
       { "<leader>fw",       function() Snacks.picker.grep() end,                                                   desc = "Grep" },
       { "<leader>f:",       function() Snacks.picker.command_history() end,                                        desc = "Command History" },
+      { "<leader>fc",       function() Snacks.picker.commands() end,                                        desc = " Find Command" },
       { "<leader>fn",       function() Snacks.picker.notifications() end,                                          desc = "Notification History" },
       { "<leader>fr",       function() Snacks.picker.recent() end,                                                 desc = "Recent" },
       { "<leader>fR",       function() Snacks.picker.resume() end,                                                 desc = "Resume" },
-      { '<leader>f"',       function() Snacks.picker.registers() end,                                              desc = "Registers" },
+      { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
+      { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      -- explorer
       { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
       { "<leader>gf",       function() Snacks.picker.git_log_file() end,                                           desc = "Git Log File" },
       -- Grep
-      { "<leader>fc",       function() Snacks.picker.grep_word() end,                                              desc = "Visual selection or word", mode = { "n", "x" } },
+      { "<leader>fs",       function() Snacks.picker.grep_word() end,                                              desc = "Visual selection or word", mode = { "n", "x" } },
       -- Search
       { "<leader>fh",       function() Snacks.picker.search_history() end,                                         desc = "Search History" },
       { "<leader>fk",       function() Snacks.picker.keymaps() end,                                                desc = "Keymaps" },

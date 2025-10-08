@@ -1,8 +1,12 @@
 local options = {
-
   base46 = {
     theme = "onedark", -- default theme
-    hl_add = {},
+    hl_add = {
+      DiagnosticUnderlineError = { undercurl = true, sp = "red" },
+      DiagnosticUnderlineWarn = { undercurl = true, sp = "yellow" },
+      DiagnosticUnderlineInfo = { undercurl = true, sp = "nord_blue" },
+      DiagnosticUnderlineHint = { undercurl = true, sp = "greeen" },
+    },
     hl_override = {},
     integrations = {},
     changed_themes = {},

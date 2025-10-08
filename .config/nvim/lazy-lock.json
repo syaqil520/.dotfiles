@@ -1,6 +1,6 @@
 {
   "LuaSnip": { "branch": "master", "commit": "73813308abc2eaeff2bc0d3f2f79270c491be9d7" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "8e17e50b519ba360bcfd5dfb5843ccac9be500ba" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "f3d6d9afc8f09bf4dec91bf2bb5a40fcfe7ea477" },
   "arrow.nvim": { "branch": "master", "commit": "6e0f726f55f99332dd726a53effd6813786b6d49" },
   "base46": { "branch": "v3.0", "commit": "db58475d3fd2a16f9b1467d6895e3c4c195ed7dd" },
   "blink.cmp": { "branch": "main", "commit": "d918ebde3a71c0fcbdd6e8f8c146d986d7aaf76f" },
@@ -17,7 +17,7 @@
   "mini.ai": { "branch": "main", "commit": "11c57180bc9084089206e211ac7aa598bedc9673" },
   "mini.pairs": { "branch": "main", "commit": "42407ccb80ec59c84e7c91d815f42ed90a8cc093" },
   "mini.splitjoin": { "branch": "main", "commit": "70240d5d3881ff1b2b1d7902450f98a6fa303800" },
-  "mini.surround": { "branch": "main", "commit": "61db6babafbd10e862a7ac4713fa043126329247" },
+  "mini.surround": { "branch": "main", "commit": "fc6fbc319b2d686c524d71c7feda20f71af15b8e" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-autopairs": { "branch": "master", "commit": "23320e75953ac82e559c610bec5a90d9c6dfa743" },

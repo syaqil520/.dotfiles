@@ -29,6 +29,7 @@ vim.o.pumheight = 10 -- Pop up menu height (default: 0)
 vim.o.conceallevel = 0 -- So that `` is visible in markdown files (default: 1)
 vim.wo.signcolumn = "yes" -- Keep signcolumn on by default (default: 'auto')
 vim.o.fileencoding = "utf-8" -- The encoding written to a file (default: 'utf-8')
+vim.opt.encoding = "utf-8"
 vim.o.cmdheight = 1 -- More space in the Neovim command line for displaying messages (default: 1)
 vim.o.breakindent = true -- Enable break indent (default: false)
 vim.o.updatetime = 250 -- Decrease update time (default: 4000)
@@ -57,4 +58,17 @@ vim.g.snacks_animate = false
 vim.b.snacks_animate = false
 
 vim.g.autoformat = true
-vim.o.winborder = "rounded"
+vim.o.winborder = "rounded" -- or 'single', 'double'
+
+-- Enable undercurl support (works with both tmux-256color and xterm-256color)
+vim.cmd([[
+  let &t_Cs = "\e[4:3m"
+  let &t_Ce = "\e[4:0m"
+  
+  " If $TERM is xterm-256color, ensure proper terminal capabilities
+  if &term == 'xterm-256color'
+    set t_Co=256
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
+]])

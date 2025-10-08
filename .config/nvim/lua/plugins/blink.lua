@@ -23,13 +23,11 @@ return {
       },
 
       completion = {
-        doumentation = {
+        documentation = {
           auto_show = true,
           auto_show_delay_ms = 500,
-          documentation = {
-            window = {
-              border = "single",
-            },
+          window = {
+            border = "rounded",
           },
         },
         list = {
@@ -59,18 +57,10 @@ return {
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
           lsp = {
-            name = "lsp",
+            name = "LSP",
             enabled = true,
             module = "blink.cmp.sources.lsp",
-            kind = "LSP",
             -- min_keyword_length = 2,
-            -- When linking markdown notes, I would get snippets and text in the
-            -- suggestions, I want those to show only if there are no LSP
-            -- suggestions
-            --
-            -- Enabled fallbacks as this seems to be working now
-            -- Disabling fallbacks as my snippets wouldn't show up when editing
-            -- lua files
             -- fallbacks = { "snippets", "buffer" },
             score_offset = 90, -- the higher the number, the higher the priority
           },
@@ -78,9 +68,6 @@ return {
             name = "Path",
             module = "blink.cmp.sources.path",
             score_offset = 25,
-            -- When typing a path, I would get snippets and text in the
-            -- suggestions, I want those to show only if there are no path
-            -- suggestions
             fallbacks = { "snippets", "buffer" },
             -- min_keyword_length = 2,
             opts = {
