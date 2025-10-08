@@ -2,8 +2,10 @@ return {
   {
     "saghen/blink.cmp",
     event = "VimEnter",
+    version = "1.*",
     dependencies = {
       "folke/lazydev.nvim",
+      { "L3MON4D3/LuaSnip", version = "v2.*" },
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -25,10 +27,7 @@ return {
       completion = {
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500,
-          window = {
-            border = "rounded",
-          },
+          auto_show_delay_ms = 400,
         },
         list = {
           selection = {
@@ -48,12 +47,18 @@ return {
           show_without_menu = true,
         },
         menu = {
-          border = "rounded",
+          draw = {
+            columns = {
+              { "kind_icon" },
+              { "label", "label_description", gap = 1 },
+              { "kind", gap = 1, "source_name" },
+            },
+          },
         },
       },
 
       sources = {
-        default = { "lsp", "path", "lazydev", "snippets" },
+        default = { "lsp", "path", "lazydev", "snippets", "buffer" },
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
           lsp = {
@@ -67,7 +72,7 @@ return {
           path = {
             name = "Path",
             module = "blink.cmp.sources.path",
-            score_offset = 25,
+            -- score_offset = 25,
             fallbacks = { "snippets", "buffer" },
             -- min_keyword_length = 2,
             opts = {
@@ -85,28 +90,28 @@ return {
             max_items = 15,
             min_keyword_length = 2,
             module = "blink.cmp.sources.snippets",
-            score_offset = 85, -- the higher the number, the higher the priority
+            -- score_offset = 85, -- the higher the number, the higher the priority
           },
         },
       },
 
-      -- snippets = { preset = "luasnip" },
+      snippets = { preset = "luasnip" },
 
-      -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-      -- which automatically downloads a prebuilt binary when enabled.
-      --
-      -- By default, we use the Lua implementation instead, but you may enable
-      -- the rust implementation via `'prefer_rust_with_warning'`
-      --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = "lua" },
+      fuzzy = { implementation = "prefer_rust" },
 
-      -- Shows a signature help window while you type arguments for a function
-      signature = {
-        enabled = true,
-        window = {
-          show_documentation = false,
-          border = "rounded",
+      cmdline = {
+        completion = {
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
+          menu = {
+            auto_show = function(_)
+              return vim.fn.getcmdtype() == ":"
+            end,
+          },
         },
       },
     },
