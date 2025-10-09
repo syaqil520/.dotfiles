@@ -31,13 +31,17 @@ map("v", "J", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "M
 map("v", "K", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<S-h>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Prev Buffer" })
+map("n", "<S-l>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Next Buffer" })
 map("n", "<leader>bd", function()
-  Snacks.bufdelete()
+  require("nvchad.tabufline").close_buffer()
 end, { desc = "Delete Buffer" })
 map("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
+  require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Delete Other Buffers" })
 
 -- Clear search and stop snippet on escape

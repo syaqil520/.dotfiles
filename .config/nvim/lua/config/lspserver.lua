@@ -43,6 +43,7 @@ M.servers = {
   marksman = {},
   prismals = {},
   tailwindcss = {},
+  yamlls = {},
 }
 
 -- Linter and Formatter to be installed by mason
