@@ -23,6 +23,8 @@ local options = {
       SnacksPickerBoxBorder = { fg = "line", bg = "darker_black" },
       SnacksPickerPreviewBorder = { fg = "line", bg = "darker_black" },
       SnacksInputBorder = { fg = "line", bg = "darker_black" },
+      CursorLineNr = { fg = "yellow" },
+      LineNr = { fg = "light_grey" },
     },
     hl_override = {},
     integrations = {},

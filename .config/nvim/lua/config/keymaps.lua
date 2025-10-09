@@ -27,11 +27,6 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit All" })
 
 -- Move Lines
--- have some issue when pressing esc and j/k fast enough will trigger this
--- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
--- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
--- map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
--- map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 map("v", "J", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "K", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
@@ -79,43 +74,7 @@ map("v", ">", ">gv")
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
--- location list
-map("n", "<leader>xl", function()
-  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Location List" })
-
--- quickfix list
-map("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = "Quickfix List" })
-
-map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
-
--- diagnostic
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
 local root_patterns = { ".git", "lua" }
-
 local function find_root()
   local util = require("lspconfig.util")
   return util.root_pattern(unpack(root_patterns))(vim.fn.expand("%:p"))
@@ -129,31 +88,7 @@ if vim.fn.executable("lazygit") == 1 then
   map("n", "<leader>gG", function()
     Snacks.lazygit()
   end, { desc = "Lazygit (cwd)" })
-  map("n", "<leader>gf", function()
-    Snacks.picker.git_log_file()
-  end, { desc = "Git Current File History" })
-  map("n", "<leader>gl", function()
-    Snacks.picker.git_log({ cwd = find_root() })
-  end, { desc = "Git Log" })
-  map("n", "<leader>gL", function()
-    Snacks.picker.git_log()
-  end, { desc = "Git Log (cwd)" })
 end
-
-map("n", "<leader>gb", function()
-  Snacks.picker.git_log_line()
-end, { desc = "Git Blame Line" })
-map({ "n", "x" }, "<leader>gB", function()
-  Snacks.gitbrowse()
-end, { desc = "Git Browse (open)" })
-map({ "n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({
-    open = function(url)
-      vim.fn.setreg("+", url)
-    end,
-    notify = false,
-  })
-end, { desc = "Git Browse (copy)" })
 
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
@@ -162,12 +97,8 @@ map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 -- map("n", "sv", ":vsplit<Return>", opts)
 
 -- improve nav in insert mode
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "move end of line" })
-map("i", "<C-h>", "<Left>", { desc = "move left" })
-map("i", "<C-l>", "<Right>", { desc = "move right" })
-map("i", "<C-j>", "<Down>", { desc = "move down" })
-map("i", "<C-k>", "<Up>", { desc = "move up" })
+-- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+-- map("i", "<C-e>", "<End>", { desc = "move end of line" })
 
 -- select all
 map("n", "<C-a>", "ggVG", { desc = "Select all" })

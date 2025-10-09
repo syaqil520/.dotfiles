@@ -141,6 +141,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "typescriptreact",
     "dart",
     "json",
+    "lua",
   },
   callback = function()
     vim.opt_local.tabstop = 2

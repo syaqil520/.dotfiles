@@ -95,7 +95,9 @@ return {
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
-      { "<leader>gf",       function() Snacks.picker.git_log_file() end,                                           desc = "Git Log File" },
+      { "<leader>gf",       function() Snacks.picker.git_log_file() end,                                           desc = "Git Current File History" },
+      { "<leader>gB",        function() Snacks.gitbrowse() end, desc = "Git Browse (open)" , mode = { "n", "x" }},
+      { "<leader>gb", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
       -- Grep
       { "<leader>fs",       function() Snacks.picker.grep_word() end,                                              desc = "Visual selection or word", mode = { "n", "x" } },
       -- Search
