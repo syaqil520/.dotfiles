@@ -1,13 +1,13 @@
 return {
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-    opts = {},
-  },
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   event = "InsertEnter",
+  --   config = true,
+  --   opts = {},
+  -- },
   {
     "echasnovski/mini.pairs",
-    enabled = false,
+    -- enabled = false,
     opts = {
       modes = { insert = true, command = true, terminal = false },
       -- skip autopair when next character is one of these

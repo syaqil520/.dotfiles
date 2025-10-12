@@ -14,7 +14,7 @@ return {
     },
     opts = {},
     config = function()
-      local lspserver = require("config.lspserver")
+      local lspserver = require("utils.lspserver")
       require("mason").setup()
 
       local servers = vim.tbl_keys(lspserver.servers or {})

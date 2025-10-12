@@ -12,7 +12,7 @@ vim.diagnostic.config({
   } or {},
 })
 
-local lspserver = require("config.lspserver")
+local lspserver = require("utils.lspserver")
 lspserver.servers.sourcekit = {}
 
 for server, config in pairs(lspserver.servers) do

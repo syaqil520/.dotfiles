@@ -41,7 +41,7 @@ return {
       },
       image = { enabled = true },
       indent = {
-        enabled = false,
+        enabled = true,
         only_current = true, -- only show indent guides in the current window
       },
       input = { enabled = true },

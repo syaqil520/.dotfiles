@@ -38,6 +38,7 @@ vim.o.backup = false -- Creates a backup file (default: false)
 vim.o.writebackup = false -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited (default: true)
 vim.o.undofile = true -- Save undo history (default: false)
 vim.o.completeopt = "menu,menuone,noselect" -- Set completeopt to have a better completion experience (default: 'menu,preview')
+vim.o.spell = false
 vim.opt.shortmess:append("c") -- Don't give |ins-completion-menu| messages (default: does not include 'c')
 vim.opt.iskeyword:append("-") -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
@@ -64,11 +65,4 @@ vim.o.winborder = "rounded" -- or 'single', 'double'
 vim.cmd([[
   let &t_Cs = "\e[4:3m"
   let &t_Ce = "\e[4:0m"
-  
-  " If $TERM is xterm-256color, ensure proper terminal capabilities
-  if &term == 'xterm-256color'
-    set t_Co=256
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  endif
 ]])
