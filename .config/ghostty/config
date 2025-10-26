@@ -12,3 +12,5 @@ macos-option-as-alt = true
 window-padding-x = 5
 window-padding-y = 5
 window-decoration = false
+
+keybind = ctrl+period=text:\x1b[46;5u
