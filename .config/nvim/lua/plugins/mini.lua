@@ -6,7 +6,7 @@ return {
   --   opts = {},
   -- },
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     -- enabled = false,
     opts = {
       modes = { insert = true, command = true, terminal = false },
@@ -61,7 +61,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     event = "VeryLazy",
     opts = function()
       local ai = require("mini.ai")
@@ -87,7 +87,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     keys = function(_, keys)
       -- Populate the keys based on the user's options
       local Plugin = require("lazy.core.plugin")

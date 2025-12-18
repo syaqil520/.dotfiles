@@ -37,11 +37,11 @@ return {
         },
       },
       explorer = {
-        enabled = true,
+        enabled = false,
       },
       image = { enabled = true },
       indent = {
-        enabled = false,
+        enabled = true,
         only_current = true, -- only show indent guides in the current window
       },
       input = { enabled = true },
@@ -91,7 +91,7 @@ return {
       { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
       { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       -- explorer
-      { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
