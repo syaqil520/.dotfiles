@@ -12,7 +12,6 @@ return {
     views = {
       finder = {
         delete_to_trash = true,
-
         win = {
           kind = "split_left_most",
           kinds = {
