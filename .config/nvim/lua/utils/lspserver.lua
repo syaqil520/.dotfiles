@@ -48,9 +48,11 @@ M.servers = {
 
 -- Linter and Formatter to be installed by mason
 M.other = {
-  "stylua",
+  -- linter
   "shellcheck",
   "hadolint",
+  -- formatter
+  "stylua",
 }
 
 return M
