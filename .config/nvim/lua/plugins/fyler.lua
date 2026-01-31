@@ -16,7 +16,7 @@ return {
           kind = "split_left_most",
           kinds = {
             split_left_most = {
-              width = "20%",
+              width = "30%",
               win_opts = {
                 winfixwidth = false,
               },
@@ -30,6 +30,11 @@ return {
     vim.keymap.set("n", "<c-e>", function()
       require("fyler").toggle()
     end, { desc = "Open Fyler tree view" })
+
+    vim.keymap.set("n", "<leader>E", function()
+      require("fyler").toggle({ kind = "float" })
+    end, { desc = "Open Fyler tree view" })
+
     require("fyler").setup(opts)
   end,
 }
