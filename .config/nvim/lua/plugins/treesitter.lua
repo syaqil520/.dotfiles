@@ -79,6 +79,15 @@ return { -- Highlight, edit, and navigate code
             pattern = filetypes,
             callback = function(event)
               vim.treesitter.start(event.buf, parser)
+
+              if opts.folds.enable then
+                vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                vim.wo[0][0].foldmethod = "expr"
+              end
+
+              if opts.indent.enable then
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+              end
             end,
           })
         end
