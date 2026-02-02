@@ -83,6 +83,9 @@ return {
               show_hidden_files_by_default = true,
             },
           },
+          -- dadbod = {
+          --   module = "vim_dadbod_completion.blink",
+          -- },
           snippets = {
             name = "snippets",
             enabled = true,
@@ -91,6 +94,9 @@ return {
             module = "blink.cmp.sources.snippets",
             -- score_offset = 85, -- the higher the number, the higher the priority
           },
+        },
+        per_filetype = {
+          -- sql = { "dadbod", "snippets", "buffer" },
         },
       },
 

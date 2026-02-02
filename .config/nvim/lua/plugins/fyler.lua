@@ -16,7 +16,7 @@ return {
           kind = "split_left_most",
           kinds = {
             split_left_most = {
-              width = "30%",
+              width = "20%",
               win_opts = {
                 winfixwidth = false,
               },
