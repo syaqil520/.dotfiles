@@ -38,6 +38,7 @@ return {
       },
       explorer = {
         enabled = false,
+        trash = true,
       },
       image = { enabled = true },
       indent = {
@@ -91,7 +92,7 @@ return {
       { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
       { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       -- explorer
-      -- { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- { "<c-b>", function() Snacks.explorer() end, desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
