@@ -37,7 +37,7 @@ return {
         },
       },
       explorer = {
-        enabled = false,
+        enabled = true,
         trash = true,
       },
       image = { enabled = true },
@@ -59,10 +59,16 @@ return {
               -- to close the picker on ESC instead of going to normal mode,
               -- add the following keymap to your config
               ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<c-b>"] = { "close", mode = { "n" } },
               ["<a-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
               ["<a-f>"] = {},
               ["<a-h>"] = {},
               ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
+            },
+          },
+          list = {
+            keys = {
+              ["<c-b>"] = { "close", mode = "n" },
             },
           },
         },
@@ -92,7 +98,7 @@ return {
       { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
       { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       -- explorer
-      -- { "<c-b>", function() Snacks.explorer() end, desc = "File Explorer" },
+      { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
