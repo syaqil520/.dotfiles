@@ -14,3 +14,29 @@ window-padding-y = 5
 window-decoration = false
 
 keybind = ctrl+period=text:\x1b[46;5u
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+#################
+## keybindings ##
+#################
+# Some useful encoded characters:
+# \x0a = Enter/Return
+# \x1b = Esc
+# \x18 = <C-x> (tmux prefix)
+
+# switch to window by index (1-based)
+keybind = super+physical:one=text:\x181
+keybind = super+physical:two=text:\x182
+keybind = super+physical:three=text:\x183
+keybind = super+physical:four=text:\x184
+keybind = super+physical:five=text:\x185
+keybind = super+physical:six=text:\x186
+keybind = super+physical:seven=text:\x187
+keybind = super+physical:eight=text:\x188
+keybind = super+physical:nine=text:\x189
+
+# <perfix>+K (open sesh picker)
+keybind = super+k=text:\x18\x4b
+# <perfix>+l (switch to last session)
+keybind = super+l=text:\x18\x4c
