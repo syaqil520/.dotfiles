@@ -160,3 +160,6 @@ fi
 
 # Created by `pipx` on 2025-08-05 16:52:01
 export PATH="$PATH:/Users/syaqilaizat/.local/bin"
+
+# opencode
+export PATH=/Users/syaqilaizat/.opencode/bin:$PATH
