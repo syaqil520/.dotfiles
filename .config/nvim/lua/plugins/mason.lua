@@ -15,10 +15,11 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = {
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
     },
-    cmd = "Mason",
+    cmd = "MasonToolsInstall",
     config = function()
       local lspserver = require("utils.lspserver")
       local servers = vim.tbl_keys(lspserver.servers or {})

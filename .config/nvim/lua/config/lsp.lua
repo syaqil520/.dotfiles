@@ -12,10 +12,10 @@ vim.diagnostic.config({
   } or {},
 })
 
+-- Enable server
 local lspserver = require("utils.lspserver")
-lspserver.servers.sourcekit = {}
 
-for server, config in pairs(lspserver.servers) do
+for server, config in pairs(lspserver.all_servers) do
   vim.lsp.enable(server)
   vim.lsp.config(server, config)
 end

@@ -46,6 +46,10 @@ M.servers = {
   yamlls = {},
 }
 
+M.external_server = {
+  sourcekit = {},
+}
+
 -- Linter and Formatter to be installed by mason
 M.other = {
   -- linter
@@ -55,5 +59,7 @@ M.other = {
   -- formatter
   "stylua",
 }
+
+M.all_servers = vim.tbl_extend("force", M.servers, M.external_server)
 
 return M
