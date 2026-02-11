@@ -51,6 +51,7 @@ M.other = {
   -- linter
   "shellcheck",
   "hadolint",
+
   -- formatter
   "stylua",
 }
