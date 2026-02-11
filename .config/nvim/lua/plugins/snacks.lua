@@ -23,6 +23,45 @@ return {
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.inlay_hints():map("<leader>uh")
           Snacks.toggle.indent():map("<leader>ug")
+          Snacks.toggle
+            .new({
+              id = "format_on_save",
+              name = "󰊄 Format on Save (global)",
+              get = function()
+                return not vim.g.disable_autoformat
+              end,
+              set = function(state)
+                vim.g.disable_autoformat = not state
+              end,
+            })
+            :map("<leader>uf")
+
+          vim.g.virtualcolumns = vim.g.virtualcolumns or "120"
+          Snacks.toggle
+            .new({
+              id = "virtcolumns_toggle",
+              name = "Virtual Columns = " .. vim.g.virtualcolumns,
+              get = function()
+                return vim.g.virtualcolumns_enabled or false
+              end,
+              set = function(state)
+                local wrap = vim.wo.wrap
+                if state then
+                  vim.cmd("set colorcolumn=" .. vim.g.virtualcolumns)
+                  vim.g.virtualcolumns_enabled = true
+                  if wrap then
+                    vim.opt.textwidth = tonumber(vim.g.virtualcolumns)
+                    vim.opt.formatoptions:append("t")
+                  end
+                else
+                  vim.cmd("set colorcolumn=")
+                  vim.g.virtualcolumns_enabled = false
+                  vim.opt.textwidth = 0
+                  vim.opt.formatoptions:remove("t")
+                end
+              end,
+            })
+            :map("<leader>u|")
         end,
       })
     end,
@@ -82,7 +121,10 @@ return {
       scope = { enabled = true },
       scroll = { enabled = false },
       statuscolumn = { enabled = true },
-      words = { enabled = true },
+      words = {
+        enabled = true,
+        mode = { "n" },
+      },
       toggle = { enabled = true },
       terminal = { win = { position = "float" } },
     },

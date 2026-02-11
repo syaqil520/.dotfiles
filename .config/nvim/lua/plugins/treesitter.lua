@@ -1,33 +1,20 @@
 return { -- Highlight, edit, and navigate code
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = {
-          max_lines = 4,
-          multiline_threshold = 2,
-        },
-      },
-    },
     lazy = false,
     branch = "main",
     build = ":TSUpdate",
     opts = {
-      -- LazyVim config for treesitter
-      indent = { enable = true },
-      highlight = { enable = true },
-      folds = { enable = true },
       ensure_installed = {
         "bash",
         "comment",
         "css",
         "diff",
-        "fish",
         "git_config",
         "git_rebase",
         "gitcommit",
         "gitignore",
+        "gitattributes",
         "html",
         "javascript",
         "json",
@@ -37,7 +24,6 @@ return { -- Highlight, edit, and navigate code
         "make",
         "markdown",
         "markdown_inline",
-        "norg",
         "python",
         "query",
         "regex",
@@ -64,34 +50,33 @@ return { -- Highlight, edit, and navigate code
         "yaml",
         "sql",
         "ruby",
+        "zsh",
+        "dockerfile",
       },
     },
     config = function(_, opts)
       -- install parsers from custom opts.ensure_installed
-      if opts.ensure_installed and #opts.ensure_installed > 0 then
-        require("nvim-treesitter").install(opts.ensure_installed)
-        -- register and start parsers for filetypes
-        for _, parser in ipairs(opts.ensure_installed) do
-          local filetypes = parser -- In this case, parser is the filetype/language name
-          vim.treesitter.language.register(parser, filetypes)
+      require("nvim-treesitter").install(opts.ensure_installed)
 
-          vim.api.nvim_create_autocmd({ "FileType" }, {
-            pattern = filetypes,
-            callback = function(event)
-              vim.treesitter.start(event.buf, parser)
-
-              if opts.folds.enable then
-                vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-                vim.wo[0][0].foldmethod = "expr"
-              end
-
-              if opts.indent.enable then
-                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-              end
-            end,
-          })
-        end
-      end
+      --  start parsers for filetypes
+      local ts_filetypes = vim
+        .iter(opts.ensure_installed)
+        :map(function(lang)
+          return vim.treesitter.language.get_filetypes(lang)
+        end)
+        :flatten()
+        :totable()
+      vim.api.nvim_create_autocmd({ "FileType" }, {
+        pattern = ts_filetypes,
+        callback = function(event)
+          vim.treesitter.start(event.buf)
+          -- enable fold
+          vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo[0][0].foldmethod = "expr"
+          -- enable indent
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
 
       -- Auto-install and start parsers for any buffer
       vim.api.nvim_create_autocmd({ "BufRead" }, {
@@ -136,6 +121,11 @@ return { -- Highlight, edit, and navigate code
           if parser_installed then
             -- Start treesitter for this buffer
             vim.treesitter.start(bufnr, parser_name)
+            -- enable fold
+            vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+            -- enable indent
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
         end,
       })

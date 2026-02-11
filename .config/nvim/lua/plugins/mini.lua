@@ -1,10 +1,4 @@
 return {
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   event = "InsertEnter",
-  --   config = true,
-  --   opts = {},
-  -- },
   {
     "nvim-mini/mini.pairs",
     -- enabled = false,
@@ -127,5 +121,14 @@ return {
         toggle = "gss",
       },
     },
+  },
+  {
+    "nvim-mini/mini.icons",
+    version = false,
+    lazy = false,
+    config = function()
+      require("mini.icons").setup()
+      MiniIcons.mock_nvim_web_devicons()
+    end,
   },
 }

@@ -1,12 +1,13 @@
 local options = {
   base46 = {
-    theme = "onedark", -- default theme
+    theme = "onedark",
     hl_add = {
       DiagnosticUnderlineError = { undercurl = true, sp = "red" },
       DiagnosticUnderlineWarn = { undercurl = true, sp = "yellow" },
       DiagnosticUnderlineInfo = { undercurl = true, sp = "nord_blue" },
       DiagnosticUnderlineHint = { undercurl = true, sp = "green" },
 
+      -- Snacks
       SnacksPicker = { bg = "darker_black" },
       SnacksPickerPrompt = { fg = "red", bg = "darker_black" },
       SnacksPickerInput = { bg = "darker_black" },
@@ -23,9 +24,12 @@ local options = {
       SnacksPickerBoxBorder = { fg = "line", bg = "darker_black" },
       SnacksPickerPreviewBorder = { fg = "line", bg = "darker_black" },
       SnacksInputBorder = { fg = "line", bg = "darker_black" },
+
+      -- number
       CursorLineNr = { fg = "yellow" },
       LineNr = { fg = "light_grey" },
-      -- Markdown
+
+      -- RenderMarkdown
       RenderMarkdownChecked = { fg = "green" },
       RenderMarkdownTodo = { fg = "yellow" },
       RenderMarkdownBullet = { fg = "yellow" },

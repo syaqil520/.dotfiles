@@ -1,11 +1,13 @@
-local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 
 -- Set leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- better up/down
+-- General
+
+-- better up/down (cater to wrapline)
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
@@ -16,12 +18,6 @@ map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Quit neovim
 map("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit All" })
@@ -52,7 +48,7 @@ end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
-map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+-- map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -75,30 +71,14 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- commenting
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
-local root_patterns = { ".git", "lua" }
-local function find_root()
-  local util = require("lspconfig.util")
-  return util.root_pattern(unpack(root_patterns))(vim.fn.expand("%:p"))
-end
-
--- lazygit
-if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function()
-    Snacks.lazygit({ cwd = find_root() })
-  end, { desc = "Lazygit (Root Dir)" })
-  map("n", "<leader>gG", function()
-    Snacks.lazygit()
-  end, { desc = "Lazygit (cwd)" })
-end
+-- map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+-- map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
--- map("n", "ss", ":split<Return>", opts)
--- map("n", "sv", ":vsplit<Return>", opts)
+map("n", "ss", ":split<Return>", { desc = "Split Window Below", remap = true })
+map("n", "sv", ":vsplit<Return>", { desc = "Split Window Below", remap = true })
 
 -- improve nav in insert mode
 -- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
@@ -118,8 +98,6 @@ map("n", "G", "Gzz")
 map("n", "x", '"_x')
 map("n", "<Leader>p", '"0p')
 map("n", "<Leader>P", '"0P')
-map("v", "<Leader>p", '"0p')
-map("n", "-c", '"_c')
 map("n", "-C", '"_C')
 map("v", "-c", '"_c')
 map("v", "-C", '"_C')
@@ -153,3 +131,19 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+local root_patterns = { ".git", "lua" }
+local function find_root()
+  local util = require("lspconfig.util")
+  return util.root_pattern(unpack(root_patterns))(vim.fn.expand("%:p"))
+end
+
+-- lazygit
+if vim.fn.executable("lazygit") == 1 then
+  map("n", "<leader>gg", function()
+    Snacks.lazygit({ cwd = find_root() })
+  end, { desc = "Lazygit (Root Dir)" })
+  map("n", "<leader>gG", function()
+    Snacks.lazygit()
+  end, { desc = "Lazygit (cwd)" })
+end
