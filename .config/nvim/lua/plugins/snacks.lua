@@ -114,6 +114,8 @@ return {
         exclude = {
           ".git",
           "node_modules",
+          "*.xcodeproj",
+          "*.xcworkspace",
         },
       },
       notifier = { enabled = true, timeout = 2500 },
