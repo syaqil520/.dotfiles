@@ -15,8 +15,6 @@ window-decoration = false
 
 keybind = ctrl+period=text:\x1b[46;5u
 
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-
 #################
 ## keybindings ##
 #################
