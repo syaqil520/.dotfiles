@@ -137,8 +137,8 @@ return {
       { "<leader>f:",       function() Snacks.picker.command_history() end,                                        desc = "Command History" },
       { "<leader>fc",       function() Snacks.picker.commands() end,                                        desc = " Find Command" },
       { "<leader>fn",       function() Snacks.picker.notifications() end,                                          desc = "Notification History" },
-      { "<leader>fr",       function() Snacks.picker.recent() end,                                                 desc = "Recent" },
-      { "<leader>fR",       function() Snacks.picker.resume() end,                                                 desc = "Resume" },
+      -- { "<leader>fr",       function() Snacks.picker.recent() end,                                                 desc = "Recent" },
+      { "<leader>fr",       function() Snacks.picker.resume() end,                                                 desc = "Resume" },
       { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
       { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       -- explorer

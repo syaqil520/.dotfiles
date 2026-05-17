@@ -76,3 +76,6 @@ vim.cmd([[
   let &t_Cs = "\e[4:3m"
   let &t_Ce = "\e[4:0m"
 ]])
+
+-- Prepend mise shims to PATH
+-- vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
