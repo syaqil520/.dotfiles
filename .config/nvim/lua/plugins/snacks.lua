@@ -62,6 +62,15 @@ return {
               end,
             })
             :map("<leader>u|")
+          Snacks.toggle({
+            name = "Mini Pairs",
+            get = function()
+              return not vim.g.minipairs_disable
+            end,
+            set = function(state)
+              vim.g.minipairs_disable = not state
+            end,
+          }):map("<leader>up")
         end,
       })
     end,

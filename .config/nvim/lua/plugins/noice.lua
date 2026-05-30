@@ -20,7 +20,7 @@ return {
       },
     },
     presets = {
-      bottom_search = false, -- use a classic bottom cmdline for search
+      bottom_search = true, -- use a classic bottom cmdline for search
       command_palette = true, -- position the cmdline and popupmenu together
       long_message_to_split = true, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rennhme.nvim
@@ -33,7 +33,7 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+    -- { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
     { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
     { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
     { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },

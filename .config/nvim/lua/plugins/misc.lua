@@ -10,7 +10,7 @@ return {
     cmd = "LazyDev",
     opts = {
       library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+
         { path = "LazyVim", words = { "LazyVim" } },
         { path = "snacks.nvim", words = { "Snacks" } },
         { path = "lazy.nvim", words = { "LazyVim" } },
@@ -40,14 +40,5 @@ return {
       preset = "helix",
     },
     opts_extend = { "spec" },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
   },
 }

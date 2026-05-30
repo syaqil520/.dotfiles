@@ -55,8 +55,9 @@ return {
       })
     end,
   },
+  { "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
   {
-    "refractalize/oil-git-status.nvim",
+    "JezerM/oil-lsp-diagnostics.nvim",
     dependencies = { "stevearc/oil.nvim" },
     opts = {},
   },

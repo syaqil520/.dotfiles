@@ -18,7 +18,7 @@ return {
       },
     },
     ui = {
-      enable = false,
+      enabled = false,
     },
     legacy_commands = false,
 
