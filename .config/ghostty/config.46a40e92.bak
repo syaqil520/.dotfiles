@@ -38,4 +38,3 @@ keybind = super+physical:nine=text:\x189
 keybind = super+k=text:\x18\x4b
 # <perfix>+l (switch to last session)
 keybind = super+l=text:\x18\x4c
-keybind = shift+enter=text:\x1b\r
