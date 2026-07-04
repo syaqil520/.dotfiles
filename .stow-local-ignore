@@ -1,8 +1,4 @@
 .git
-.config/hypr
-.config/rofi
-.config/waybar
-.config/wlogout
 
 # Comments and blank lines are allowed.
 RCS
