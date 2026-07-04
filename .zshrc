@@ -47,7 +47,6 @@ alias lgit='lazygit'
 alias ldocker='lazydocker'
 alias lsql='lazysql'
 alias v="nvim"
-alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)' # Laravel sail
 alias mkdir='mkdir -p' # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 
 # Handy change dir shortcuts
@@ -92,10 +91,6 @@ export FZF_DEFAULT_OPTS=" \
 --border 
 --color border: #313244"
 
-# shell integration
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(fzf --zsh)"
-
 # Custom Script
 function sesh-sessions() {
   {
@@ -114,46 +109,9 @@ bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions
 
-# custom config base on machine either mac or linux
-OS="$(uname -s)"
-if [ "$OS" = "Darwin" ]; then
-
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-  eval "$(rbenv init - --no-rehash zsh)"
-  local rustuppath=$(brew --prefix rustup)/bin
-  export PATH="$PATH:/Users/syaqilaizat/.local/bin:$rustuppath"
-
-else
-
-  source /usr/share/nvm/init-nvm.sh
-  # custom var
-  # Java
-  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk/
-  # Android
-  unset ANDROID_SDK_ROOT
-  export ANDROID_HOME=$HOME/Android/Sdk/
-  export PATH=$PATH:$ANDROID_HOME/emulator
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
-  export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
-  export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-  # Created by `pipx` on 2024-10-10 14:55:01
-  export PATH="$PATH:/home/qaizaa/.local/bin"
-
-  # PAtH Variable
-  PATH="$HOME/.config/composer/vendor/bin:$PATH"
-  PATH="$PATH":"$HOME/.pub-cache/bin/"
-
-  alias un='paru -Rns' # uninstall package
-  alias up='paru -Syu' # update system/package/aur
-  alias pl='paru -Qs' # list installed package
-  alias pa='paru -Ss' # list available package
-  alias pc='paru -Sc' # remove unused cache
-  alias po='paru -Qtdq | paru -Rns -' # remove unused packages, also try > paru -Qqd | paru -Rsu --print
-
-fi
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -163,3 +121,9 @@ export PATH="$PATH:/Users/syaqilaizat/.local/bin"
 
 # opencode
 export PATH=/Users/syaqilaizat/.opencode/bin:$PATH
+
+# shell integration
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(fzf --zsh)"
+eval "$(rbenv init - --no-rehash zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
