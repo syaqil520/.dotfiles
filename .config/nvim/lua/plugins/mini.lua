@@ -106,4 +106,5 @@ return {
       MiniIcons.mock_nvim_web_devicons()
     end,
   },
+  { "nvim-mini/mini.align", version = false, opts = {} },
 }

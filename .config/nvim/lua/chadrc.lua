@@ -46,6 +46,7 @@ local options = {
       "blink",
       "tiny-inline-diagnostic",
       "devicons",
+      "nvimtree",
     },
     changed_themes = {},
     transparency = false,

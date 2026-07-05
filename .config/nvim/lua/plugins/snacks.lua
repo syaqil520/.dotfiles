@@ -85,7 +85,7 @@ return {
         },
       },
       explorer = {
-        enabled = true,
+        enabled = false,
         trash = true,
       },
       image = { enabled = true },
@@ -96,6 +96,9 @@ return {
       input = { enabled = true },
       picker = {
         enabled = true,
+        -- layout = {
+        --   preset = "ivy",
+        -- },
         matcher = {
           sort_empty = true,
           frecency = true,
@@ -141,17 +144,18 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader><leader>", function() Snacks.picker.files({ hidden = false, ignored = false }) end,                desc = "Find Files" },
-      { "<leader>fw",       function() Snacks.picker.grep() end,                                                   desc = "Grep" },
+      { "<leader><leader>", function() Snacks.picker.files({ hidden = false, ignored = false }) end,               desc = "Find Files"},
+      { "<leader>fa", function() Snacks.picker.files({ hidden = true, ignored = true }) end,               desc = "Find All Files"},
+      { "<leader>fw",       function() Snacks.picker.grep({ layout = { preset = "ivy" } }) end,                    desc = "Grep" },
       { "<leader>f:",       function() Snacks.picker.command_history() end,                                        desc = "Command History" },
-      { "<leader>fc",       function() Snacks.picker.commands() end,                                        desc = " Find Command" },
+      { "<leader>fc",       function() Snacks.picker.commands() end,                                               desc = " Find Command" },
       { "<leader>fn",       function() Snacks.picker.notifications() end,                                          desc = "Notification History" },
       -- { "<leader>fr",       function() Snacks.picker.recent() end,                                                 desc = "Recent" },
       { "<leader>fr",       function() Snacks.picker.resume() end,                                                 desc = "Resume" },
-      { '<leader>f"',       function() Snacks.picker.registers()  end,                                              desc = "Registers"},
-      { "<leader>fb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { '<leader>f"',       function() Snacks.picker.registers()  end,                                             desc = "Registers"},
+      { "<leader>fb", function() Snacks.picker.lines() end,                                                        desc = "Buffer Lines" },
       -- explorer
-      { "<c-e>", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- { "<c-e>", function() Snacks.explorer() end,                                                                 desc = "File Explorer" },
       -- git
       { "<leader>gs",       function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
       { "<leader>gd",       function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },

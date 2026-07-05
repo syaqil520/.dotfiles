@@ -1,6 +1,7 @@
 local prefix = "<leader>o"
 return {
   "obsidian-nvim/obsidian.nvim",
+  enabled = false,
   version = "*",
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:

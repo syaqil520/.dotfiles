@@ -2,6 +2,15 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   opts = {
+    views = {
+      mini = {
+        align = "message-left",
+        position = {
+          col = 0,
+          row = -1, -- or the last screen line
+        },
+      },
+    },
     lsp = {
       signature = { enabled = false },
       hover = { enabled = false },
