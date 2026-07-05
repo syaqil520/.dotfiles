@@ -127,3 +127,7 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(rbenv init - --no-rehash zsh)"
 eval "$(~/.local/bin/mise activate zsh)"
+
+# set editor as nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
