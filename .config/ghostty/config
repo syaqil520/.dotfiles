@@ -1,6 +1,6 @@
 # Font configuration
 font-family = "JetBrainsMonoNL Nerd Font"
-font-size = 13
+font-size = 14
 font-feature = "-calt,"
 font-thicken = true
 
