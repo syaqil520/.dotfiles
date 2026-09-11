@@ -131,3 +131,8 @@ eval "$(~/.local/bin/mise activate zsh)"
 # set editor as nvim
 export EDITOR="nvim"
 export VISUAL="nvim"
+
+# Android 
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
