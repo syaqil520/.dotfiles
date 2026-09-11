@@ -35,7 +35,11 @@ local options = {
       RenderMarkdownBullet = { fg = "yellow" },
       RenderMarkdownInfo = { fg = "blue" },
     },
-    hl_override = {},
+    hl_override = {
+      TbBufOn = {
+        fg = "#61afef",
+      },
+    },
     integrations = {
       "render-markdown",
       "lsp",
