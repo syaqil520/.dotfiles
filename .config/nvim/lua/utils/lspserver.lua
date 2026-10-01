@@ -41,7 +41,6 @@ M.servers = {
   },
   jsonls = {},
   marksman = {},
-  prismals = {},
   tailwindcss = {},
   yamlls = {},
 }
