@@ -101,8 +101,21 @@ return {
     "nvim-mini/mini.icons",
     version = false,
     lazy = false,
-    config = function()
-      require("mini.icons").setup()
+    opts = {
+      file = {
+        [".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        [".node-version"] = { glyph = "", hl = "MiniIconsGreen" },
+        [".prettierrc"] = { glyph = "", hl = "MiniIconsPurple" },
+        [".yarnrc.yml"] = { glyph = "", hl = "MiniIconsBlue" },
+        ["eslint.config.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        ["package.json"] = { glyph = "", hl = "MiniIconsGreen" },
+        ["tsconfig.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["tsconfig.build.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
+      },
+    },
+    config = function(_, opts)
+      require("mini.icons").setup(opts)
       MiniIcons.mock_nvim_web_devicons()
     end,
   },

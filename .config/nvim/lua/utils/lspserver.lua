@@ -1,7 +1,7 @@
 local M = {}
 
 M.servers = {
-  ts_ls = {},
+  vtsls = {},
   lua_ls = {},
   bashls = {},
   dockerls = {},

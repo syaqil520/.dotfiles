@@ -37,7 +37,7 @@ return {
         ghost_text = {
           enabled = true,
           -- Show the ghost text when an item has been selected
-          show_with_selection = false,
+          show_with_selection = true,
           -- Show the ghost text when no item has been selected, defaulting to the first item
           show_without_selection = false,
           -- Show the ghost text when the menu is open
@@ -51,6 +51,11 @@ return {
               { "kind_icon" },
               { "label", "label_description", gap = 1 },
               { "kind", gap = 1, "source_name" },
+            },
+            components = {
+              label_description = {
+                width = { max = 50 },
+              },
             },
           },
         },

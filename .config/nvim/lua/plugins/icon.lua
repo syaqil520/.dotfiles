@@ -1,11 +1,11 @@
 return {
   "Mirsmog/real-icons.nvim",
-  build = ":RealIconsInstallPack material",
+  build = ":RealIcons install",
   opts = {
-    pack = "material",
     integrations = {
       nvim_tree = true,
       snacks_picker = true,
+      oil = true,
     },
   },
 }
