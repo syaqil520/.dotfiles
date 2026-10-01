@@ -5,6 +5,9 @@ RCS
 .+,v
 
 vscode/
+^/setup_macos\.sh$
+^/browser$
+^/wallpaper$
 
 CVS
 \.\#.+       # CVS conflict files / emacs lock files
