@@ -71,6 +71,21 @@ return {
               vim.g.minipairs_disable = not state
             end,
           }):map("<leader>up")
+          Snacks.toggle
+            .new({
+              id = "blink_signature",
+              name = "Signature Help",
+              get = function()
+                return require("blink.cmp.config").signature.trigger.enabled
+              end,
+              set = function(state)
+                require("blink.cmp.config").signature.trigger.enabled = state
+                if not state then
+                  require("blink.cmp").hide_signature()
+                end
+              end,
+            })
+            :map("<leader>uS")
         end,
       })
     end,
@@ -144,8 +159,8 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader><leader>", function() Snacks.picker.files({ hidden = true, ignored = true }) end,               desc = "Find Files"},
-      -- { "<leader>fa", function() Snacks.picker.files({ hidden = true, ignored = true }) end,               desc = "Find All Files"},
+      { "<leader><leader>", function() Snacks.picker.files({ hidden = false, ignored = true }) end,               desc = "Find Files"},
+      { "<leader>fa", function() Snacks.picker.files({ hidden = true, ignored = true }) end,               desc = "Find All Files"},
       { "<leader>fw",       function() Snacks.picker.grep({ layout = { preset = "ivy" } }) end,                    desc = "Grep" },
       { "<leader>f:",       function() Snacks.picker.command_history() end,                                        desc = "Command History" },
       { "<leader>fc",       function() Snacks.picker.commands() end,                                               desc = " Find Command" },

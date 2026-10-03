@@ -1,7 +1,6 @@
 return {
   {
     "nvim-mini/mini.pairs",
-    -- enabled = false,
     opts = {
       modes = { insert = true, command = true, terminal = false },
       skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
@@ -29,6 +28,16 @@ return {
 
         if opts.markdown and o == "`" and vim.bo.filetype == "markdown" and before:match("^%s*``") then
           return "`\n```" .. vim.api.nvim_replace_termcodes("<up>", true, true, true)
+        end
+
+        if opts.skip_ts and #opts.skip_ts > 0 then
+          local ok, node = pcall(vim.treesitter.get_node)
+          while ok and node do
+            if vim.tbl_contains(opts.skip_ts, node:type()) then
+              return o
+            end
+            node = node:parent()
+          end
         end
 
         if opts.skip_next and next ~= "" and next:match(opts.skip_next) then

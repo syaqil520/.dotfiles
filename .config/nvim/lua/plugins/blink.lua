@@ -24,8 +24,14 @@ return {
       },
 
       completion = {
+        accept = {
+          -- experimental
+          auto_brackets = {
+            enabled = true,
+          },
+        },
         documentation = {
-          auto_show = true,
+          auto_show = false,
           auto_show_delay_ms = 400,
         },
         list = {
@@ -112,8 +118,12 @@ return {
 
       signature = {
         enabled = true,
+        trigger = {
+          -- start with auto-popup off; toggle with <leader>uS
+          enabled = false,
+        },
         window = {
-          show_documentation = true,
+          show_documentation = false,
         },
       },
 
