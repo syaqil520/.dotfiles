@@ -8,6 +8,14 @@ return {
           enabled = true,
           backend = "tmux",
         },
+        tools = {
+          claude = {
+            cmd = {
+              "claude",
+              "--dangerously-skip-permissions",
+            },
+          },
+        },
       },
     },
     keys = {
