@@ -21,3 +21,8 @@ startup_command = "nvim ."
 [[session]]
 name = "dotfilesconf"
 path = "~/dotfiles/.config"
+
+[[session]]
+name = "dotfiles"
+path = "~/dotfiles"
+startup_command = "nvim ."
