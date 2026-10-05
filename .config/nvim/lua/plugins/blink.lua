@@ -58,11 +58,6 @@ return {
               { "label", "label_description", gap = 1 },
               { "kind", gap = 1, "source_name" },
             },
-            components = {
-              label_description = {
-                width = { max = 50 },
-              },
-            },
           },
         },
       },
