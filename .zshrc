@@ -83,13 +83,13 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
-  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
-  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
-  --color=selected-bg:#45475A \
-  --color=border:#313244,label:#CDD6F4 \
---border 
---color border: #313244"
+  --color=bg+:#353b45,bg:#1e222a,spinner:#DE8C92,hl:#e06c75 \
+  --color=fg:#abb2bf,header:#e06c75,info:#c678dd,pointer:#DE8C92 \
+  --color=marker:#61afef,fg+:#abb2bf,prompt:#c678dd,hl+:#e06c75 \
+  --color=selected-bg:#42464e \
+  --color=border:#353b45,label:#abb2bf \
+--border
+--color border: #353b45"
 
 # Custom Script
 function sesh-sessions() {
