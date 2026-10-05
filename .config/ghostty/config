@@ -4,7 +4,7 @@ font-size = 14
 font-feature = "-calt,"
 font-thicken = true
 
-theme = catppuccin-mocha.conf
+theme = nvchad-onedark.conf
 macos-titlebar-style = "hidden"
 macos-option-as-alt = true
 
